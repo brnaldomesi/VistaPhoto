@@ -55,7 +55,10 @@ ROOT_URLCONF = 'vistagrid.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [
+            os.path.join(BASE_DIR, 'public/templates'),
+            os.path.join(BASE_DIR, 'public/static')
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
