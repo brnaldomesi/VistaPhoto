@@ -1,0 +1,26 @@
+{
+  "name": "vistagrid",
+  "description": "A Django Powered Photo Editing App",
+  "main": "index.js",
+  "authors": [
+    "Lewis Kabui"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/andela-lkabui/checkpoint4",
+  "moduleType": [],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "./public/static/bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "^1.5.0",
+    "Materialize": "materialize#^0.97.5",
+    "angular-route": "^1.5.0",
+    "angular-resource": "^1.5.0",
+    "font-awesome": "^4.5.0"
+  }
+}

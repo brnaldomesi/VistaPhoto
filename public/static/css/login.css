@@ -1,0 +1,42 @@
+/*#master_login_div {
+
+}
+*/
+nav {
+	background-color: #efecca;
+}
+
+#signup_login_div {
+	background-color: #efecca;
+	min-height: 10em;
+	height: 23em;
+	max-width: 22em;
+	margin-top: 3em;
+	margin-left: 32em;
+	border-radius: 0.5em;
+}
+
+#logo {
+	/*position: absolute;*/
+	/*left: 26%;*/
+	height: 10em;
+	/*margin-left: 5em;*/
+}
+
+footer.page-footer {
+	background-color: #efecca;
+}
+
+#login_fb {
+	background-color: #3b5998;
+}
+
+.fa-facebook-official:before {
+	padding-right: 1em;
+}
+
+#app_description {
+	margin: auto;
+	font-weight: bold;
+	padding: 3em 2em 3em 2em;
+}

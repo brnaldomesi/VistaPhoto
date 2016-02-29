@@ -1,0 +1,23 @@
+body {
+	display: flex;
+	min-height: 100vh;
+	flex-direction: column;
+}
+
+main {
+	flex: 1 0 auto;
+	background-color: #002f2f;
+}
+
+footer.page-footer {
+	margin-top: 0px;
+	padding-top: 0.5em;
+}
+
+.container {
+	color: #002f2f;
+}
+
+.right {
+	color: #002f2f;
+}

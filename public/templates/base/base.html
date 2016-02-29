@@ -1,0 +1,45 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html ng-app="vistagrid">
+<head>
+	<!-- Scripts - Framework -->
+	<script src="{% static 'bower_components/jquery/dist/jquery.js' %}"></script>
+	<script src="{% static 'bower_components/Materialize/dist/js/materialize.js' %}"></script>
+	<script src="{% static 'bower_components/angular/angular.js' %}"></script>
+	<script src="{% static 'bower_components/angular-route/angular-route.js' %}"></script>
+	<script src="{% static 'bower_components/angular-resource/angular-resource.js' %}"></script>
+	<!-- Scripts - mine -->
+	<script src="{% static 'js/app.js' %}"></script>
+	<!-- Css -->
+	<link rel="stylesheet" href="{% static 'bower_components/Materialize/dist/css/materialize.css' %}">
+	<link rel="stylesheet" href="{% static 'bower_components/font-awesome/css/font-awesome.min.css' %}">
+	<link rel="stylesheet" href="{% static 'css/base.css' %}">
+	<link rel="stylesheet" href="{% static 'css/login.css' %}">
+	<!-- Favicon -->
+	<link rel="shortcut icon" href="{% static 'images/favicon.ico' %}">
+	<title>Vistagrid</title>
+</head>
+<body>
+	<header>
+		<!-- <nav>
+			<div class="nav-wrapper">
+				<a href="#" class="brand-logo black-text">Vistagrid</a>
+				<ul id="nav-mobile" class="right hide-on-med-and-down">
+					<li><a href="collapsible.html" class="black-text">JavaScript</a></li>
+				</ul>
+			</div>
+		</nav> -->
+	</header>
+	<main ng-view>
+
+	</main>
+	<footer class="page-footer">
+		<div class="footer-copyright">
+			<div class="container">
+			© 2016 Andela
+			<a class="right" class="green_text" href="#!">More Links</a>
+			</div>
+		</div>
+	</footer>
+</body>
+</html>
