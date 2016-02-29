@@ -1,0 +1,23 @@
+{
+  "name": "vistagrid",
+  "version": "1.0.0",
+  "description": "A Django Powered Photo Editing App",
+  "main": "index.js",
+  "dependencies": {
+    "bower": "^1.7.7"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/andela-lkabui/checkpoint4.git"
+  },
+  "author": "Lewis Kabui",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/andela-lkabui/checkpoint4/issues"
+  },
+  "homepage": "https://github.com/andela-lkabui/checkpoint4#readme"
+}
