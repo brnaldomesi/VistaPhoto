@@ -32,3 +32,12 @@
 	padding-top: 1em;
 	padding-bottom: 3em;
 }
+
+#logout_button_div {
+	padding-top: 1em;
+	padding-right: 4em;
+}
+
+#logout_button {
+	background-color: #3b5998;
+}
