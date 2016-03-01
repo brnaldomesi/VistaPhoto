@@ -6,13 +6,14 @@ body {
 
 main {
 	flex: 1 0 auto;
-	background-color: #002f2f;
+	background-color: #900028;
+	height: 48em;
 }
 
 footer.page-footer {
 	padding-top: 0px;
 	margin-top: 0px;
-	background-color: #efecca;
+	background-color: #efefef;
 }
 
 .black_text {

@@ -1,0 +1,24 @@
+#upload_button {
+	background-color: #ffffff;
+	margin-left: 3em;
+	margin-right: 3em;
+}
+
+#save_button {
+	background-color: #ffffff;
+	margin-left: 3em;
+}
+
+#cancel_button {
+	background-color: #ffffff;
+	margin-left: 3em;
+	margin-right: 3em;
+}
+
+.maroon_icon {
+	color: #900028;
+}
+
+#controls_div {
+	padding: 1em;
+}
