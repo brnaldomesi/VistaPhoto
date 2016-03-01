@@ -1,11 +1,19 @@
-{% extends "base/base.html" %}
-{% load staticfiles %}
-<div id="master_login_div">
-	<div id="signup_login_div">
-		<div class="center">
-			<img id="logo" src="static/images/logo.png">
-			<p id="app_description">Snap. 1000 Words.</p>
-			<a id="login_fb" class="waves-effect waves-light btn"><i class="fa fa-facebook-official"></i>Login with Facebook</a>
+<div class="row">
+	<div id="beach_div">
+		<div class="row">
+			<div style="margin-top: 5em;">
+				<div class="center" id="logo_div">
+					<img id="logo" src="static/images/logo.png">
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<p class="center" id="app_description">Upload. Prettify. Share.</p>
+		</div>
+		<div class="row">
+			<div class="center" id="login_button_div">
+				<a class="waves-effect waves-light btn" id="login_button" href="[[fb_url]]"><i class="fa fa-facebook-official" id="fb_logo"></i>Login with Facebook</a>
+			</div>
 		</div>
 	</div>
 </div>

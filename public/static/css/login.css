@@ -1,42 +1,34 @@
-/*#master_login_div {
-
-}
-*/
-nav {
+#beach_div {
 	background-color: #efecca;
-}
-
-#signup_login_div {
-	background-color: #efecca;
-	min-height: 10em;
-	height: 23em;
-	max-width: 22em;
-	margin-top: 3em;
-	margin-left: 32em;
-	border-radius: 0.5em;
+	margin: auto;
+	min-height: 20em;
+	max-height: 27em;
+	border-radius: 5px;
+	max-width: 23em;
 }
 
 #logo {
-	/*position: absolute;*/
-	/*left: 26%;*/
 	height: 10em;
-	/*margin-left: 5em;*/
+	padding-top: 1em;
 }
 
-footer.page-footer {
-	background-color: #efecca;
+#fb_logo {
+	margin-right: 0.5em;
 }
 
-#login_fb {
+#login_button {
 	background-color: #3b5998;
 }
 
-.fa-facebook-official:before {
-	padding-right: 1em;
+#app_description {
+	font-size: 2em;
 }
 
-#app_description {
-	margin: auto;
-	font-weight: bold;
-	padding: 3em 2em 3em 2em;
+#logo_div {
+	padding: 1em;
+}
+
+#login_button_div {
+	padding-top: 1em;
+	padding-bottom: 3em;
 }

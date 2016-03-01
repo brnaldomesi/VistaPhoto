@@ -10,14 +10,16 @@ main {
 }
 
 footer.page-footer {
+	padding-top: 0px;
 	margin-top: 0px;
-	padding-top: 0.5em;
+	background-color: #efecca;
 }
 
-.container {
-	color: #002f2f;
+.black_text {
+	color: #000000;
 }
 
-.right {
-	color: #002f2f;
+.link {
+	font-weight: bold;
+	color: #000000;
 }

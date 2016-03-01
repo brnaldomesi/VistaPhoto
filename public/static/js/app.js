@@ -12,6 +12,7 @@ vistagrid.config(function ($routeProvider) {
 	$routeProvider
 	.when('/', {
 		templateUrl: 'static/views/login.html'
+		// controller: 'LoginController'
 	});
 	// .otherwise({
 	// 	redirectTo: '/'

@@ -1,0 +1,10 @@
+{% extends "base/base.html" %}
+
+{% block content %}
+<div ng-controller='DefaultController' ng-init="fb_url = '{% url 'social:begin' 'facebook' %}?next={{ request.path }}'">
+	<div ng-view>
+
+	</div>
+</div>
+
+{% endblock %}
