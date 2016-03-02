@@ -4,12 +4,10 @@
 			<div class="center">
 				<div class="col s3" style="border-right: solid #000000;">
 					<div class="row" style="height: 35em; overflow: scroll;">
-						<div style="background-image: url('static/images/index.png'); height: 10em; margin: 1em;"></div>
-						<div style="background-image: url('static/images/index.png'); height: 10em; margin: 1em;"></div>
-						<div style="background-image: url('static/images/index.png'); height: 10em; margin: 1em;"></div>
-						<div style="background-image: url('static/images/index.png'); height: 10em; margin: 1em;"></div>
-						<div style="background-image: url('static/images/index.png'); height: 10em; margin: 1em;"></div>
-						<div style="background-image: url('static/images/index.png'); height: 10em; margin: 1em;"></div>
+						<div ng-repeat="upload in uploads" style="height: 10em; margin: 1em;">
+							<img ng-src="[[upload.path]]" style="max-width: 100%; max-height: 100%">
+							<!-- <p>[[upload.path]]</p> -->
+						</div>
 					</div>
 					<div class="row">
 						<div class="center">
