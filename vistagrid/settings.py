@@ -41,6 +41,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'vistagrid',
     'social.apps.django_app.default',
+    'app',
+    'rest_framework',
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -63,7 +65,7 @@ TEMPLATES = [
             os.path.join(BASE_DIR, 'public/templates'),
             os.path.join(BASE_DIR, 'public/static')
         ],
-        'APP_DIRS': False,
+        'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.debug',
@@ -148,3 +150,6 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'public/static'),
 )
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'uploads')
+MEDIA_URL = '/uploads/'

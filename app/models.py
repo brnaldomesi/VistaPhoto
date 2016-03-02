@@ -7,5 +7,6 @@ from django.contrib.auth.models import User
 # Create your models here.
 class Photo(models.Model):
 	"""Photo ORM model."""
-	path = models.FileField()
+	photo_id = models.AutoField(primary_key=True)
+	path = models.ImageField()
 	owner = models.ForeignKey(User, on_delete=models.CASCADE)
