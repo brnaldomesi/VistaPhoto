@@ -15,10 +15,13 @@ Including another URLconf
 """
 from django.conf.urls import url, include
 from django.contrib import admin
+from app import views
 
 urlpatterns = [
-	url(r'^', include('app.urls')),
+	url(r'^$', views.index, name='index'),
+	url(r'^api/', include('app.urls')),
 	url(r'^admin/', admin.site.urls),
+	url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
 	url('', include('social.apps.django_app.urls', namespace='social')),
 	url('', include('django.contrib.auth.urls', namespace='auth')),
 ]
