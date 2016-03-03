@@ -5,8 +5,7 @@
 				<div class="col s3" style="border-right: solid #000000;">
 					<div class="row" style="height: 35em; overflow: scroll;">
 						<div ng-repeat="upload in uploads" style="height: 10em; margin: 1em;">
-							<img ng-src="[[upload.path]]" style="max-width: 100%; max-height: 100%">
-							<!-- <p>[[upload.path]]</p> -->
+							<img ng-src="[[upload.path]]" id="[[upload.photo_id]]" ng-click="uploadClicked([[upload.photo_id]])" style="max-width: 100%; max-height: 100%">
 						</div>
 					</div>
 					<div class="row">
@@ -25,7 +24,12 @@
 								</div>
 							</div>
 						</div>
-						<div style="background-image: url('static/images/index.png'); height: 24em; margin: 1em 3em 1em 3em;"></div>
+						<div ng-show="showMain" style="height: 24em; margin: 1em 3em 1em 3em;">
+							<img ng-src="[[clickedPhoto.path]]" style="max-width: 100%; max-height: 100%">
+						</div>
+						<div ng-show="!showMain" style="height: 24em; margin: 1em 3em 1em 3em;">
+							<img src="static/images/logo.png" style="max-height: 100%; max-width: 100%;">
+						</div>
 						<div style="background-color: #858081; height: 7em; margin: 1em; border-radius: 5px; width: auto; overflow-x: scroll; overflow-y: hidden; white-space: nowrap; padding-right: 1em; padding-left: 1em;">
 							<img src="static/images/index.png" style="height: 6em;" />
 							<img src="static/images/index.png" style="height: 6em;" />

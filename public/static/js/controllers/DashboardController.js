@@ -9,4 +9,19 @@ vistagrid.controller('DashboardController',
 				console.log(error);
 			}
 		);
+
+		$scope.uploadClicked = function (photo_id) {
+			var data = {
+				photo_id: photo_id
+			};
+			PhotoService.Uploads.getOne(data).$promise.then(
+				function (response) {
+					$scope.showMain = true;
+					$scope.clickedPhoto = response;
+				},
+				function (error) {
+
+				}
+			);
+		};
 }]);
