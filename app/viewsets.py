@@ -1,4 +1,7 @@
+import os
+
 from django.shortcuts import get_object_or_404
+from django.conf import settings
 
 from rest_framework import viewsets, permissions, status
 from rest_framework.response import Response
@@ -71,3 +74,23 @@ class PhotoViewSet(viewsets.ModelViewSet):
 					'detail': 'Not found.'
 				}, status=status.HTTP_404_NOT_FOUND
 			)
+
+	def destroy(self, request, pk):
+		"""Delete record from database as well as file photo on disk."""
+		photo = Photo.objects.get(pk=pk)
+		if photo:
+			filename = settings.BASE_DIR + photo.path.url
+			photo.delete()
+			if os.path.exists(filename):
+				os.remove(filename)
+				return Response({}, status=status.HTTP_204_NO_CONTENT)
+			return Response(
+				{
+					'detail': 'Photo file not found.'
+				}, status=status.HTTP_404_NOT_FOUND
+			)
+		return Response(
+			{
+				'detail': 'Not found.'
+			}, status=status.HTTP_404_NOT_FOUND
+		)
