@@ -2,12 +2,58 @@ import os
 
 from django.shortcuts import get_object_or_404
 from django.conf import settings
+from django.core.files import File
+from django.core.files.uploadedfile import InMemoryUploadedFile
 
 from rest_framework import viewsets, permissions, status
 from rest_framework.response import Response
 
-from .serializers import PhotoSerializer
-from .models import Photo
+from faker import Factory
+
+from .serializers import PhotoSerializer, EffectSerializer
+from .models import Photo, Effects, FILTERS
+
+
+class EffectViewSet(viewsets.ModelViewSet):
+	"""Handle CRUD requests to '/effects/' url."""
+	queryset = Effects.objects.all()
+	serializer_class = EffectSerializer
+	# permission_classes = (permissions.IsAuthenticated, )
+
+	def create(self, request):
+		"""Use specified effect on the uploaded photo."""
+		upload = request.data.get('path')
+		data = {}
+		fake = Factory.create()
+		filename = fake.word()
+
+		if isinstance(upload, InMemoryUploadedFile):
+			data['path'] = upload
+		elif isinstance(str(upload), str):
+			file_object = open(upload[1:])
+			django_file = File(file_object)
+			data['path'] = django_file
+
+		serializer = self.serializer_class(data=data)
+
+		if serializer.is_valid():
+			# delete all pre_existing effects objects
+			self.queryset.delete()
+
+			for key in FILTERS:
+				effects = Effects(
+					path=serializer.validated_data.get('path'),
+					effect_name=key,
+					file_name=filename
+				)
+				effects.save()
+			return Response(
+				{
+					'status': 'Success',
+					'message': 'Thumbnails created'
+				}, status=status.HTTP_201_CREATED
+			)
+		return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 class PhotoViewSet(viewsets.ModelViewSet):
