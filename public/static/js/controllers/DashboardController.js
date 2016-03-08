@@ -1,6 +1,7 @@
 vistagrid.controller('DashboardController',
 	['$scope', 'PhotoService', '$timeout', 'Upload', function ($scope, PhotoService, $timeout, Upload) {
-		$scope.uploader = {};
+
+		var clickedPhotoID = null;
 		var refreshThumbnails = function () {
 			PhotoService.Thumbnails.getAll().$promise.then(
 				function (response) {
@@ -29,6 +30,8 @@ vistagrid.controller('DashboardController',
 			var data = {
 				photo_id: photo_id
 			};
+			clickedPhotoID = photo_id;
+
 			PhotoService.Uploads.getOne(data).$promise.then(
 				function (response) {
 					$scope.showMain = true;
@@ -84,4 +87,42 @@ vistagrid.controller('DashboardController',
 				}
 			);
 		};
+
+		$scope.saveEdits = function () {
+			if ($scope.clickedPhoto.effect_name) {
+				swal(
+					{
+						title: "Are you sure?",
+						text: "You cannot undo the changes you are about to make!",
+						type: "warning",
+						showCancelButton: true,
+						confirmButtonColor: "#3b5998",
+						confirmButtonText: "Yes, save!",
+						closeOnConfirm: true
+					},
+					function () {
+						effect_name = $scope.clickedPhoto.effect_name
+						var data = {
+							photo_id: clickedPhotoID,
+							filter_effects: effect_name
+						};
+						PhotoService.Uploads.edit(data).$promise.then(
+							function (response) {
+								fetchUploads();
+								Materialize.toast(effect_name + ' effect applied!', 5000);
+							},
+							function (error) {
+								console.log(error);
+							}
+						);
+					}
+				);
+			} else {
+				Materialize.toast('No effect selected.', 5000);
+			}
+		};
+
+		$scope.clicked = function () {
+			Materialize.toast('I have been clicked!!', 40000);
+		}
 }]);
