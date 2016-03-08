@@ -42,7 +42,7 @@
 					<div class="row">
 						<div ng-show="showMain" class="col s12"  style="height: 9em; margin: 1em; border-radius: 5px; width: auto; overflow-x: scroll; overflow-y: hidden; white-space: nowrap; padding-right: 1em; padding-left: 1em;">
 							<div ng-repeat="thumbnail in thumbnails" class="col s2 effects_div" style="height: 7em;">
-								<img ng-src="[[ thumbnail.path ]]" class="effects_thumbnail"/>
+								<img ng-src="[[ thumbnail.path ]]" ng-click="effectPreview(thumbnail.effect_id)" class="effects_thumbnail"/>
 								<p class="effect_name_paragraph">[[ thumbnail.effect_name ]]</p>
 							</div>
 						</div>

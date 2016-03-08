@@ -10,7 +10,7 @@ vistagrid.controller('DashboardController',
 
 				}
 			);
-		}
+		};
 
 		var fetchUploads = function () {
 			PhotoService.Uploads.getAll().$promise.then(
@@ -21,7 +21,7 @@ vistagrid.controller('DashboardController',
 					console.log(error);
 				}
 			);
-		}
+		};
 
 		fetchUploads();
 
@@ -41,10 +41,8 @@ vistagrid.controller('DashboardController',
 			data = {
 				path: path
 			};
-			console.log(data);
 			PhotoService.Thumbnails.create(data).$promise.then(
 				function (response) {
-					console.log(response);
 					refreshThumbnails();
 				},
 				function (error) {
@@ -55,7 +53,6 @@ vistagrid.controller('DashboardController',
 
 		$scope.uploadNewPhoto = function (file, errFiles) {
 			if (file) {
-				console.log(file);
 				var data = {
 					url: '/api/photos/',
 					data: {
@@ -65,7 +62,6 @@ vistagrid.controller('DashboardController',
 				}
 				Upload.upload(data).then(
 					function (response) {
-						console.log('Successful upload!!');
 						fetchUploads();
 					},
 					function (error) {
@@ -73,5 +69,19 @@ vistagrid.controller('DashboardController',
 					}
 				);
 			}
-		}
+		};
+
+		$scope.effectPreview = function (effectID) {
+			var data = {
+				effect_id: effectID
+			}
+			PhotoService.Thumbnails.getOne(data).$promise.then(
+				function (response) {
+					$scope.clickedPhoto = response;
+				},
+				function (error) {
+
+				}
+			);
+		};
 }]);
