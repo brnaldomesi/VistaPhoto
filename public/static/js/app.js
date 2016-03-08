@@ -1,4 +1,4 @@
-var vistagrid = angular.module('vistagrid', ['ngRoute', 'ngResource']);
+var vistagrid = angular.module('vistagrid', ['ngRoute', 'ngResource', 'ngFileUpload']);
 
 vistagrid.config(function ($interpolateProvider) {
 	$interpolateProvider.startSymbol('[[');
@@ -21,4 +21,9 @@ vistagrid.config(function ($routeProvider) {
 	// .otherwise({
 	// 	redirectTo: '/'
 	// });
+});
+
+vistagrid.config(function ($httpProvider) {
+	$httpProvider.defaults.xsrfCookieName = 'csrftoken';
+	$httpProvider.defaults.xsrfHeaderName = 'X-CSRFToken';
 });
