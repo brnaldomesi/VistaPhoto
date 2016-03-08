@@ -9,6 +9,18 @@ vistagrid.factory('PhotoService', ['$resource',
 				getOne: {
 					method: 'GET',
 					isArray: false
+				},
+				upload: {
+					method: 'POST'
+				}
+			}),
+			Thumbnails: $resource('/api/effects/:effect_id/', {effect_id: '@effect_id'}, {
+				getAll: {
+					method: 'GET',
+					isArray: true
+				},
+				create: {
+					method: 'POST'
 				}
 			})
 		}
