@@ -40,4 +40,6 @@
 
 #logout_button {
 	background-color: #3b5998;
+	border: solid #ffffff;
+	border-width: thin;
 }
