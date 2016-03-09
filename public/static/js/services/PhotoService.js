@@ -15,6 +15,9 @@ vistagrid.factory('PhotoService', ['$resource',
 				},
 				edit: {
 					method: 'PUT'
+				},
+				delete: {
+					method: 'DELETE'
 				}
 			}),
 			Thumbnails: $resource('/api/effects/:effect_id/', {effect_id: '@effect_id'}, {
