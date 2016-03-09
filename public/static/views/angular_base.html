@@ -1,10 +1,10 @@
 {% extends "base/base.html" %}
 
 {% block content %}
-<div ng-controller='DefaultController' ng-init="fb_url = '{% url 'social:begin' 'facebook' %}?next={{ request.path }}'">
+<div ng-controller='DefaultController' ng-init="fb_url = '{% url 'social:begin' 'facebook' %}'">
 	<div class="row">
 		<div id="logout_button_div">
-			<a class="waves-effect waves-light btn right" id="logout_button"  href="{% url 'auth:logout' %}?next={{ request.path }}">Logout</a>
+			<a class="waves-effect waves-light btn right" id="logout_button"  href="{% url 'auth:logout' %}?next=/">Logout</a>
 			<!-- ng-show="loggedIn" -->
 		</div>
 	</div>
