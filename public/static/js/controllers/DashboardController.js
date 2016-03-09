@@ -1,6 +1,5 @@
 vistagrid.controller('DashboardController',
 	['$scope', 'PhotoService', '$timeout', 'Upload', function ($scope, PhotoService, $timeout, Upload) {
-
 		var clickedPhotoID = null;
 		var refreshThumbnails = function () {
 			PhotoService.Thumbnails.getAll().$promise.then(
@@ -110,6 +109,8 @@ vistagrid.controller('DashboardController',
 							function (response) {
 								fetchUploads();
 								Materialize.toast(effect_name + ' effect applied!', 5000);
+								var $toastContent = $('<span style="font-weight: bold">' + effect_name + ' effect applied!</span>');
+								Materialize.toast($toastContent, 5000);
 							},
 							function (error) {
 								console.log(error);
@@ -118,11 +119,38 @@ vistagrid.controller('DashboardController',
 					}
 				);
 			} else {
-				Materialize.toast('No effect selected.', 5000);
+				var $toastContent = $('<span style="font-weight: bold">No effect selected!</span>');
+				Materialize.toast($toastContent, 5000);
 			}
 		};
 
-		$scope.clicked = function () {
-			Materialize.toast('I have been clicked!!', 40000);
+		$scope.deletePhoto = function () {
+			swal(
+				{
+					title: "Are you sure?",
+					text: "You will not be able to recover this photo!",
+					type: "warning",
+					showCancelButton: true,
+					confirmButtonColor: "#f44336",
+					confirmButtonText: "Yes, delete photo!",
+					closeOnConfirm: true
+				},
+				function () {
+					var data = {
+						photo_id: clickedPhotoID
+					};
+					PhotoService.Uploads.delete(data).$promise.then(
+						function (response) {
+							fetchUploads();
+							var $toastContent = $('<span style="font-weight: bold">Delete successful!</span>');
+							Materialize.toast($toastContent, 5000);
+						},
+						function (error) {
+							var $toastContent = $('<span style="font-weight: bold">An error occurred!</span>');
+							Materialize.toast($toastContent, 5000);
+						}
+					);
+				}
+			);
 		}
 }]);
