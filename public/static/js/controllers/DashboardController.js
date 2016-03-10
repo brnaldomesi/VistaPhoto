@@ -152,5 +152,17 @@ vistagrid.controller('DashboardController',
 					);
 				}
 			);
-		}
+		};
+
+		$scope.shareViaFacebook = function () {
+			FB.ui(
+				{
+				 	method: 'share',
+				 	href: $scope.clickedPhoto.path,
+				},
+				function (response) {
+
+				}
+			);
+		};
 }]);
