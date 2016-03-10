@@ -65,6 +65,8 @@ vistagrid.controller('DashboardController',
 				Upload.upload(data).then(
 					function (response) {
 						fetchUploads();
+						var $toastContent = $('<span style="font-weight: bold">Photo uploaded!</span>');
+						Materialize.toast($toastContent, 5000);
 					},
 					function (error) {
 						console.log(error);
@@ -108,7 +110,6 @@ vistagrid.controller('DashboardController',
 						PhotoService.Uploads.edit(data).$promise.then(
 							function (response) {
 								fetchUploads();
-								Materialize.toast(effect_name + ' effect applied!', 5000);
 								var $toastContent = $('<span style="font-weight: bold">' + effect_name + ' effect applied!</span>');
 								Materialize.toast($toastContent, 5000);
 							},
@@ -152,5 +153,17 @@ vistagrid.controller('DashboardController',
 					);
 				}
 			);
-		}
+		};
+
+		$scope.shareViaFacebook = function () {
+			FB.ui(
+				{
+				 	method: 'share',
+				 	href: $scope.clickedPhoto.path,
+				},
+				function (response) {
+
+				}
+			);
+		};
 }]);

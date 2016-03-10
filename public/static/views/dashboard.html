@@ -1,56 +1,80 @@
 <div class="row">
+	<!-- Facebook SDK -->
+	<script>
+		window.fbAsyncInit = function() {
+			FB.init({
+				appId      : '1578038259153196',
+				xfbml      : true,
+				version    : 'v2.5'
+			});
+		};
+		(function(d, s, id){
+				var js, fjs = d.getElementsByTagName(s)[0];
+				if (d.getElementById(id)) {return;}
+					js = d.createElement(s); js.id = id;
+					js.src = "//connect.facebook.net/en_US/sdk.js";
+					fjs.parentNode.insertBefore(js, fjs);
+		}(document, 'script', 'facebook-jssdk'));
+	</script>
 	<div class="col s12" style="background-color: #efefef;">
 		<div class="row">
 			<div class="center">
 				<div class="col s2">
 					<div class="row" style="height: 35em; overflow: scroll;">
-
-						<div ng-repeat="upload in uploads" style="margin: 1em;">
-							<img ng-src="[[upload.path]]" id="[[upload.photo_id]]" ng-click="uploadClicked(upload.photo_id, upload.file_url)" style="max-width: 100%; max-height: 100%">
+						<div class="card" ng-repeat="upload in uploads" style="border: solid #616161; border-width: thin; border-radius: 5px;">
+							<div class="card-image" style="height: 8em;">
+								<img ng-src="[[upload.path]]" ng-click="uploadClicked(upload.photo_id, upload.file_url)" style="max-width: 100%; max-height: 100%;">
+							</div>
+							<div class="card-content">
+								<p class="upload_file_name">[[upload.file_name]]</p>
+							</div>
 						</div>
 					</div>
 					<div class="row">
 						<div class="center">
-							<button type="file" ngf-select="uploadNewPhoto($file, $invalidFiles)" accept="image/*" >Upload Photo</button>
+							<!-- <button type="file"  nfg-max-ratio="8:5" accept="image/*" >Upload Photo</button> -->
+							<a class="waves-effect waves-light btn" id="upload_button" ngf-select="uploadNewPhoto($file, $invalidFiles)" accept="image/*"><i id="upload_icon" class="fa fa-upload"></i>Upload</a>
 						</div>
 					</div>
 				</div>
-				<div class="col s9 z-depth-1" style="padding-top: 1em;">
+				<div class="col s10">
+					<div class="row right" id="controls_div" ng-show="showMain">
+						<span class="btn-floating btn-large btn-flat waves-effect waves-light" id="share_button" ng-click="shareViaFacebook()"><i class="fa fa-share facebook_blue_icon"></i></span>
+						<a class="btn-floating btn-large btn-flat waves-effect waves-light" id="save_button" ng-click="saveEdits()"><i class="fa fa-floppy-o facebook_blue_icon"></i></a>
+						<a class="btn-floating btn-large btn-flat waves-effect waves-light" id="delete_button" ng-click="deletePhoto()"><i class="fa fa-trash facebook_blue_icon"></i></a>
+					</div>
 					<div class="row">
-						<div ng-show="showMain" class="col s12 center">
-							<div class="right">
-								<div id="controls_div">
-									<a class="waves-effect waves-light btn" id="save_button" ng-click="saveEdits()"><i class="fa fa-floppy-o maroon_icon"></i>Save</a>
-									<a class="waves-effect waves-light btn" id="delete_button" ng-click="deletePhoto()"><i class="fa fa-times maroon_icon"></i>Delete</a>
+						<div class="col s12" ng-show="!showMain" style="height: 26em;">
+							<img src="static/images/logo.png" style="max-height: 100%; max-width: 100%;">
+						</div>
+						<!-- <div class="col s12"> -->
+						<div ng-show="showMain" class="card" style="border: solid #616161; border-width: thin; border-radius: 5px; height: 35em;">
+							<div class="card-image" style="max-height: 24em; height: 24em; padding: 1em 21em;">
+								<img ng-src="[[clickedPhoto.path]]" style="height: 80%; max-width: 100%;">
+							</div>
+							<div class="card-content">
+								<div>
+									<div ng-repeat="thumbnail in thumbnails" class="col s2">
+										<img ng-src="[[ thumbnail.path ]]" ng-click="effectPreview(thumbnail.effect_id)" class="effects_thumbnail"/>
+										<p class="effect_name_paragraph">[[ thumbnail.effect_name ]]</p>
+									</div>
 								</div>
 							</div>
 						</div>
+
 					</div>
 					<div class="row">
-
-						<div class="col s12" ng-show="showMain">
-							<div class="center" style="height: 20em;">
-								<img ng-src="[[clickedPhoto.path]]" style="max-width: 100%; max-height: 100%">
-							</div>
-						</div>
-
-
-						<div class="col s12" ng-show="!showMain" style="height: 20em;">
-							<img src="static/images/logo.png" style="max-height: 100%; max-width: 100%;">
-						</div>
-					</div>
-					<div class="row">
-						<div ng-show="showMain" class="col s12"  style="height: 9em; margin: 1em; border-radius: 5px; width: auto; overflow-x: scroll; overflow-y: hidden; white-space: nowrap; padding-right: 1em; padding-left: 1em;">
+						<!-- <div ng-show="showMain" class="col s12"  style="height: 9em; margin: 1em; border-radius: 5px; width: auto; overflow-x: scroll; overflow-y: hidden; white-space: nowrap; padding-right: 1em; padding-left: 1em;">
 							<div ng-repeat="thumbnail in thumbnails" class="col s2 effects_div" style="height: 7em;">
 								<img ng-src="[[ thumbnail.path ]]" ng-click="effectPreview(thumbnail.effect_id)" class="effects_thumbnail"/>
 								<p class="effect_name_paragraph">[[ thumbnail.effect_name ]]</p>
 							</div>
-						</div>
+						</div> -->
 						<div ng-show="!showMain" style="height: 7em; margin: 1em; border-radius: 5px; width: auto; overflow-x: scroll; overflow-y: hidden; white-space: nowrap; padding-right: 1em; padding-left: 1em;">
 							No photos clicked yet.
 						</div>
 					</div>
-				</div>
+
 			</div>
 		</div>
 	</div>

@@ -35,6 +35,10 @@ class Photo(models.Model):
 
 			photo.save(self.path.url[1:])
 
+	def get_file_name(self):
+		"""Returns the name of the file that this model is associated with."""
+		return self.path.name[2:]
+
 
 def effects_file_name(instance, filename):
 	"""Return upload path to be used in path attribute of Effects model."""
@@ -54,11 +58,9 @@ class Effects(models.Model):
 		"""Apply the effect that corresponds to current value of 'self.effect_name'
 		in the FILTERS dictionary.
 		"""
-		size = (1920, 810)
 		if self.effect_name in FILTERS:
 			photo = Image.open(self.path)
 			preview = photo.filter(FILTERS.get(self.effect_name))
-			preview = preview.resize(size)
 			preview.save(self.path.url[1:])
 
 	def save(self, *args, **kwargs):
