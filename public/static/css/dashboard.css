@@ -61,3 +61,7 @@
 	color: #757575 !important;
 	word-wrap: break-word !important;
 }
+
+#upload_icon {
+	margin-right: 0.5em;
+}

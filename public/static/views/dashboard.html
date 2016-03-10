@@ -32,7 +32,8 @@
 					</div>
 					<div class="row">
 						<div class="center">
-							<button type="file" ngf-select="uploadNewPhoto($file, $invalidFiles)" nfg-max-ratio="8:5" accept="image/*" >Upload Photo</button>
+							<!-- <button type="file"  nfg-max-ratio="8:5" accept="image/*" >Upload Photo</button> -->
+							<a class="waves-effect waves-light btn" id="upload_button" ngf-select="uploadNewPhoto($file, $invalidFiles)" accept="image/*"><i id="upload_icon" class="fa fa-upload"></i>Upload</a>
 						</div>
 					</div>
 				</div>
