@@ -35,6 +35,10 @@ class Photo(models.Model):
 
 			photo.save(self.path.url[1:])
 
+	def get_file_name(self):
+		"""Returns the name of the file that this model is associated with."""
+		return self.path.name[2:]
+
 
 def effects_file_name(instance, filename):
 	"""Return upload path to be used in path attribute of Effects model."""
