@@ -1,13 +1,40 @@
 <div class="row">
+	<!-- Facebook SDK -->
+	<script>
+		window.fbAsyncInit = function() {
+			FB.init({
+				appId      : '1578038259153196',
+				xfbml      : true,
+				version    : 'v2.5'
+			});
+		};
+		(function(d, s, id){
+				var js, fjs = d.getElementsByTagName(s)[0];
+				if (d.getElementById(id)) {return;}
+					js = d.createElement(s); js.id = id;
+					js.src = "//connect.facebook.net/en_US/sdk.js";
+					fjs.parentNode.insertBefore(js, fjs);
+		}(document, 'script', 'facebook-jssdk'));
+	</script>
 	<div class="col s12" style="background-color: #efefef;">
 		<div class="row">
 			<div class="center">
-				<div class="col s2">
+				<div class="col s3">
 					<div class="row" style="height: 35em; overflow: scroll;">
-
-						<div ng-repeat="upload in uploads" style="margin: 1em;">
-							<img ng-src="[[upload.path]]" id="[[upload.photo_id]]" ng-click="uploadClicked(upload.photo_id, upload.file_url)" style="max-width: 100%; max-height: 100%">
+						<div class="card" ng-repeat="upload in uploads" style="border: solid #616161; border-width: thin; border-radius: 5px;">
+							<div class="card-image">
+								<img ng-src="[[upload.path]]" ng-click="uploadClicked(upload.photo_id, upload.file_url)">
+							</div>
+							<div class="card-content">
+								<p class="upload_file_name">[[upload.file_name]]</p>
+							</div>
+							<!-- <div class="card-action">
+								<a href="#">This is a link</a>
+							</div> -->
 						</div>
+						<!-- <div ng-repeat="upload in uploads" style="margin: 1em;">
+							<img ng-src="[[upload.path]]" id="[[upload.photo_id]]" ng-click="uploadClicked(upload.photo_id, upload.file_url)" style="max-width: 100%; max-height: 100%">
+						</div> -->
 					</div>
 					<div class="row">
 						<div class="center">
@@ -20,8 +47,9 @@
 						<div ng-show="showMain" class="col s12 center">
 							<div class="right">
 								<div id="controls_div">
-									<a class="waves-effect waves-light btn" id="save_button" ng-click="saveEdits()"><i class="fa fa-floppy-o maroon_icon"></i>Save</a>
-									<a class="waves-effect waves-light btn" id="delete_button" ng-click="deletePhoto()"><i class="fa fa-times maroon_icon"></i>Delete</a>
+									<a class="waves-effect waves-light btn" id="save_button" ng-click="saveEdits()"><i class="fa fa-floppy-o facebook_blue_icon"></i>Save</a>
+									<a class="waves-effect waves-light btn" id="delete_button" ng-click="deletePhoto()"><i class="fa fa-times facebook_blue_icon"></i>Delete</a>
+									<button ng-click="shareViaFacebook()">Share</button>
 								</div>
 							</div>
 						</div>
@@ -33,9 +61,7 @@
 								<img ng-src="[[clickedPhoto.path]]" style="max-width: 100%; max-height: 100%">
 							</div>
 						</div>
-
-
-						<div class="col s12" ng-show="!showMain" style="height: 20em;">
+						<div class="col s12" ng-show="!showMain" style="height: 26em;">
 							<img src="static/images/logo.png" style="max-height: 100%; max-width: 100%;">
 						</div>
 					</div>

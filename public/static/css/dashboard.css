@@ -16,7 +16,7 @@
 	color: #3b5998;
 }
 
-.maroon_icon {
+.facebook_blue_icon {
 	color: #3b5998;
 	margin-right: 0.5em;
 }
@@ -41,4 +41,16 @@
 	margin: 0px;
 	padding: 0px;
 	font-weight: bold;
+}
+
+.card {
+	padding-top: 1.4em;
+	padding-right: 0.2em;
+	padding-left: 0.2em;
+}
+
+.upload_file_name {
+	font-weight: bold;
+	color: #757575 !important;
+	word-wrap: break-word !important;
 }
