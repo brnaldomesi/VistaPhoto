@@ -21,6 +21,8 @@
     "Materialize": "materialize#^0.97.5",
     "angular-route": "^1.5.0",
     "angular-resource": "^1.5.0",
-    "font-awesome": "^4.5.0"
+    "font-awesome": "^4.5.0",
+    "ng-file-upload": "^12.0.1",
+    "sweetalert": "^1.1.3"
   }
 }

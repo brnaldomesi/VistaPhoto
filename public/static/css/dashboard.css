@@ -1,24 +1,44 @@
 #upload_button {
 	background-color: #ffffff;
-	margin-left: 3em;
-	margin-right: 3em;
+	color: #3b5998;
 }
 
 #save_button {
 	background-color: #ffffff;
 	margin-left: 3em;
+	color: #3b5998;
 }
 
-#cancel_button {
+#delete_button {
 	background-color: #ffffff;
 	margin-left: 3em;
 	margin-right: 3em;
+	color: #3b5998;
 }
 
 .maroon_icon {
-	color: #900028;
+	color: #3b5998;
+	margin-right: 0.5em;
 }
 
 #controls_div {
 	padding: 1em;
+}
+
+.effects_div {
+	height: 4em;
+	width: 5em;
+	padding: 0em;
+	margin: 0em;
+}
+
+.effects_thumbnail {
+	height: 5em;
+	max-width: 100%;
+}
+
+.effect_name_paragraph {
+	margin: 0px;
+	padding: 0px;
+	font-weight: bold;
 }

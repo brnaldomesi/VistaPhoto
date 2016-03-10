@@ -1,40 +1,53 @@
 <div class="row">
-	<div class="col s12" style="background-color: #efefef; height: 40em;">
+	<div class="col s12" style="background-color: #efefef;">
 		<div class="row">
 			<div class="center">
-				<div class="col s3" style="border-right: solid #000000;">
+				<div class="col s2">
 					<div class="row" style="height: 35em; overflow: scroll;">
-						<div ng-repeat="upload in uploads" style="height: 10em; margin: 1em;">
-							<img ng-src="[[upload.path]]" style="max-width: 100%; max-height: 100%">
-							<!-- <p>[[upload.path]]</p> -->
+
+						<div ng-repeat="upload in uploads" style="margin: 1em;">
+							<img ng-src="[[upload.path]]" id="[[upload.photo_id]]" ng-click="uploadClicked(upload.photo_id, upload.file_url)" style="max-width: 100%; max-height: 100%">
 						</div>
 					</div>
 					<div class="row">
 						<div class="center">
-							<a class="waves-effect waves-light btn" id="upload_button"><i class="fa fa-cloud-upload maroon_icon"></i></a>
+							<button type="file" ngf-select="uploadNewPhoto($file, $invalidFiles)" accept="image/*" >Upload Photo</button>
 						</div>
 					</div>
 				</div>
-				<div class="col s9" style="height: 35em;">
+				<div class="col s9 z-depth-1" style="padding-top: 1em;">
 					<div class="row">
-						<div style="height: 5em; background-color: #858081; margin: 1em; border-radius: 5px;">
+						<div ng-show="showMain" class="col s12 center">
 							<div class="right">
 								<div id="controls_div">
-									<a class="waves-effect waves-light btn" id="save_button"><i class="fa fa-floppy-o maroon_icon"></i></a>
-									<a class="waves-effect waves-light btn" id="cancel_button"><i class="fa fa-times maroon_icon"></i></a>
+									<a class="waves-effect waves-light btn" id="save_button" ng-click="saveEdits()"><i class="fa fa-floppy-o maroon_icon"></i>Save</a>
+									<a class="waves-effect waves-light btn" id="delete_button" ng-click="deletePhoto()"><i class="fa fa-times maroon_icon"></i>Delete</a>
 								</div>
 							</div>
 						</div>
-						<div style="background-image: url('static/images/index.png'); height: 24em; margin: 1em 3em 1em 3em;"></div>
-						<div style="background-color: #858081; height: 7em; margin: 1em; border-radius: 5px; width: auto; overflow-x: scroll; overflow-y: hidden; white-space: nowrap; padding-right: 1em; padding-left: 1em;">
-							<img src="static/images/index.png" style="height: 6em;" />
-							<img src="static/images/index.png" style="height: 6em;" />
-							<img src="static/images/index.png" style="height: 6em;" />
-							<img src="static/images/index.png" style="height: 6em;" />
-							<img src="static/images/index.png" style="height: 6em;" />
-							<img src="static/images/index.png" style="height: 6em;" />
-							<img src="static/images/index.png" style="height: 6em;" />
-							<img src="static/images/index.png" style="height: 6em;" />
+					</div>
+					<div class="row">
+
+						<div class="col s12" ng-show="showMain">
+							<div class="center" style="height: 20em;">
+								<img ng-src="[[clickedPhoto.path]]" style="max-width: 100%; max-height: 100%">
+							</div>
+						</div>
+
+
+						<div class="col s12" ng-show="!showMain" style="height: 20em;">
+							<img src="static/images/logo.png" style="max-height: 100%; max-width: 100%;">
+						</div>
+					</div>
+					<div class="row">
+						<div ng-show="showMain" class="col s12"  style="height: 9em; margin: 1em; border-radius: 5px; width: auto; overflow-x: scroll; overflow-y: hidden; white-space: nowrap; padding-right: 1em; padding-left: 1em;">
+							<div ng-repeat="thumbnail in thumbnails" class="col s2 effects_div" style="height: 7em;">
+								<img ng-src="[[ thumbnail.path ]]" ng-click="effectPreview(thumbnail.effect_id)" class="effects_thumbnail"/>
+								<p class="effect_name_paragraph">[[ thumbnail.effect_name ]]</p>
+							</div>
+						</div>
+						<div ng-show="!showMain" style="height: 7em; margin: 1em; border-radius: 5px; width: auto; overflow-x: scroll; overflow-y: hidden; white-space: nowrap; padding-right: 1em; padding-left: 1em;">
+							No photos clicked yet.
 						</div>
 					</div>
 				</div>
