@@ -78,21 +78,6 @@ class PhotoViewSet(viewsets.ModelViewSet):
 			)
 		return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-	def retrieve(self, request, pk):
-		"""Handle requests to get an upload. Also set the effects on thumbnails
-		of available effects when a photo is clicked."""
-		try:
-			queryset = Photo.objects.filter(photo_id=pk)
-			photo = get_object_or_404(queryset)
-			serializer = PhotoSerializer(photo)
-			return Response(serializer.data, status=status.HTTP_200_OK)
-		except Photo.DoesNotExist:
-			return Response(
-				{
-					'detail': 'Not found.'
-				}, status=status.HTTP_404_NOT_FOUND
-			)
-
 	def update(self, request, pk):
 		"""Handle application of effects/filters on images when user clicks."""
 		try:
