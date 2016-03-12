@@ -3,7 +3,8 @@ var vistagrid = angular.module('vistagrid', ['ngRoute', 'ngResource', 'ngFileUpl
 vistagrid.config(function ($interpolateProvider) {
 	$interpolateProvider.startSymbol('[[');
 	$interpolateProvider.endSymbol(']]');
-})
+});
+
 vistagrid.config(['$resourceProvider', function ($resourceProvider) {
 	$resourceProvider.defaults.stripTrailingSlashes = false;
 }]);
@@ -11,16 +12,15 @@ vistagrid.config(['$resourceProvider', function ($resourceProvider) {
 vistagrid.config(function ($routeProvider) {
 	$routeProvider
 	.when('/', {
-		templateUrl: 'static/views/login.html',
-		controller: 'LoginController'
+		templateUrl: 'static/views/login.html'
 	})
 	.when('/dashboard', {
 		templateUrl: 'static/views/dashboard.html',
 		controller: 'DashboardController'
+	})
+	.otherwise({
+		redirectTo: '/'
 	});
-	// .otherwise({
-	// 	redirectTo: '/'
-	// });
 });
 
 vistagrid.config(function ($httpProvider) {
