@@ -1,16 +1,7 @@
 vistagrid.controller('DashboardController',
-	['$scope', 'PhotoService', '$timeout', 'Upload', function ($scope, PhotoService, $timeout, Upload) {
+	['$scope', 'PhotoService', 'Upload', 'FacebookService', '$rootScope', '$location',
+	function ($scope, PhotoService, Upload, FacebookService, $rootScope, $location) {
 		var clickedPhotoID = null;
-		var refreshThumbnails = function () {
-			PhotoService.Thumbnails.getAll().$promise.then(
-				function (response) {
-					$scope.thumbnails = response;
-				},
-				function (error) {
-
-				}
-			);
-		};
 
 		var fetchUploads = function () {
 			PhotoService.Uploads.getAll().$promise.then(
@@ -23,7 +14,32 @@ vistagrid.controller('DashboardController',
 			);
 		};
 
-		fetchUploads();
+		var checkLogin = function () {
+			console.log('Checking login credentials!');
+			FacebookService.loginStatus().then(
+				function (response) {
+					console.log(response);
+					fetchUploads();
+				},
+				function (error) {
+					$location.path('/');
+					var $toastContent = $('<span style="font-weight: bold">Facebook login required.</span>');
+					Materialize.toast($toastContent, 5000);
+				}
+			);
+		};
+		checkLogin();
+
+		var refreshThumbnails = function () {
+			PhotoService.Thumbnails.getAll().$promise.then(
+				function (response) {
+					$scope.thumbnails = response;
+				},
+				function (error) {
+
+				}
+			);
+		};
 
 		$scope.uploadClicked = function (photo_id, path) {
 			var data = {
