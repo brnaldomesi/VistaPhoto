@@ -8,6 +8,7 @@
 	margin-left: 3em;
 	color: #3b5998;
 	border: solid #3b5998;
+	border-width: thin;
 }
 
 #delete_button {
@@ -16,12 +17,14 @@
 	margin-right: 3em;
 	color: #3b5998;
 	border: solid #3b5998;
+	border-width: thin;
 }
 
 #share_button {
 	margin-left: 3em;
 	background-color: #ffffff;
 	border: solid #3b5998;
+	border-width: thin;
 }
 
 .facebook_blue_icon {
