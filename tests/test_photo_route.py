@@ -23,8 +23,8 @@ class TestPhotoAPIRoute(TestBaseClass):
 			'filter_effects': 'BLUR'
 		}
 		response = self.client.post(url, data=data)
-		self.assertTrue(response.status_code, 201)
-		self.assertTrue(response.status_text, 'Created')
+		self.assertEqual(response.status_code, 201)
+		self.assertEqual(response.status_text, 'Created')
 		self.assertTrue(
 			'Success' in response.data.get('status')
 		)
@@ -38,8 +38,8 @@ class TestPhotoAPIRoute(TestBaseClass):
 			'filter_effects': 'BLUR'
 		}
 		response = self.client.post(url, data=data)
-		self.assertTrue(response.status_code, 401)
-		self.assertTrue(response.status_text, 'Unauthorized')
+		self.assertEqual(response.status_code, 403)
+		self.assertEqual(response.status_text, 'Forbidden')
 		self.assertTrue(
 			'credentials were not provided' in response.data.get('detail')
 		)
@@ -56,8 +56,8 @@ class TestPhotoAPIRoute(TestBaseClass):
 			'filter_effects': 'BLUR'
 		}
 		response = self.client.post(url, data=data)
-		self.assertTrue(response.status_code, 400)
-		self.assertTrue(response.status_text, 'Bad Request')
+		self.assertEqual(response.status_code, 400)
+		self.assertEqual(response.status_text, 'Bad Request')
 		self.assertTrue(
 			'No file was submitted' in response.data.get('path')[0]
 		)
@@ -74,8 +74,8 @@ class TestPhotoAPIRoute(TestBaseClass):
 			'path': self.uploadable_image()
 		}
 		response = self.client.post(url, data=data)
-		self.assertTrue(response.status_code, 400)
-		self.assertTrue(response.status_text, 'Bad Request')
+		self.assertEqual(response.status_code, 400)
+		self.assertEqual(response.status_text, 'Bad Request')
 		self.assertTrue(
 			'This field is required' in response.data.get('filter_effects')[0]
 		)
@@ -94,8 +94,8 @@ class TestPhotoAPIRoute(TestBaseClass):
 		photo_id = response.data[0].get('photo_id')
 		url += str(photo_id) + '/'
 		response = self.client.delete(url)
-		self.assertTrue(response.status_code, 204)
-		self.assertTrue(response.status_text, 'No Content')
+		self.assertEqual(response.status_code, 204)
+		self.assertEqual(response.status_text, 'No Content')
 		all_photos = Photo.objects.all()
 		self.assertEqual(len(all_photos), 0)
 
