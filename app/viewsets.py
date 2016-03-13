@@ -12,13 +12,14 @@ from faker import Factory
 
 from .serializers import PhotoSerializer, EffectSerializer
 from .models import Photo, Effects, FILTERS
+from .permissions import IsOwner
 
 
 class EffectViewSet(viewsets.ModelViewSet):
 	"""Handle CRUD requests to '/effects/' url."""
 	queryset = Effects.objects.all()
 	serializer_class = EffectSerializer
-	# permission_classes = (permissions.IsAuthenticated, )
+	permission_classes = (permissions.IsAuthenticated, )
 
 	def create(self, request):
 		"""Use specified effect on the uploaded photo."""
@@ -60,7 +61,24 @@ class PhotoViewSet(viewsets.ModelViewSet):
 	"""Handle CRUD requests to '/photos/' url."""
 	queryset = Photo.objects.all()
 	serializer_class = PhotoSerializer
-	permission_classes = (permissions.IsAuthenticated,)
+	permission_classes = (permissions.IsAuthenticated, IsOwner)
+
+	def get_queryset(self):
+		"""Override this method so provide both retrieve and list views to user
+		without a problem. Problem being anticipated here is as a result of
+		overriding 'get_object' below (whose purpose is to apply IsOwner permissions
+		on this viewset.)"""
+		if self.kwargs.get('pk'):
+			return Photo.objects.filter(pk=self.kwargs.get('pk'))
+		return self.queryset
+
+	def get_object(self):
+		"""Override this method so that IsOwner permissions can take effect from
+		the call to check_object_permissions below.
+		"""
+		obj = get_object_or_404(self.get_queryset())
+		self.check_object_permissions(self.request, obj)
+		return obj
 
 	def create(self, request):
 		"""POST photos with the currently logged in user being the owner."""
