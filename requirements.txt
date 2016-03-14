@@ -2,7 +2,6 @@ appnope==0.1.0
 autoenv==1.0.0
 coverage==4.0.3
 decorator==4.0.9
-defusedxml==0.4.1
 Django==1.9.2
 djangorestframework==3.3.2
 fake-factory==0.5.5
@@ -21,7 +20,6 @@ PyJWT==1.4.0
 python-dateutil==2.5.0
 python-openid==2.2.5
 python-social-auth==0.2.14
-python3-openid==3.0.9
 requests==2.9.1
 requests-oauthlib==0.6.1
 simplegeneric==0.8.1
