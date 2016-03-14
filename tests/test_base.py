@@ -41,6 +41,6 @@ class TestBaseClass(TestCase):
 
 	def uploadable_image(self):
 		"""Create an uploadable object from the 'test.jpg' file on disk."""
-		f = open('test.jpg')
+		f = open('test.jpg', 'rb')
 		imf = ImageFile(f)
 		return imf
