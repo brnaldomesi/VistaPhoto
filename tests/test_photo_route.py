@@ -1,5 +1,5 @@
 from random import random
-from test_base import TestBaseClass
+from .test_base import TestBaseClass
 from app.models import FILTERS, Photo
 
 

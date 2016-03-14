@@ -1,5 +1,6 @@
 appnope==0.1.0
 autoenv==1.0.0
+coverage==4.0.3
 decorator==4.0.9
 Django==1.9.2
 djangorestframework==3.3.2

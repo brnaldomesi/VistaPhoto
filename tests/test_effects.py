@@ -1,7 +1,7 @@
 import os
 
 from django.conf import settings
-from test_base import TestBaseClass
+from .test_base import TestBaseClass
 from app.models import Effects
 
 
