@@ -1,7 +1,8 @@
 # Vistagrid
 
-[![Code Issues](https://www.quantifiedcode.com/api/v1/project/54a4decaa92b4d2483d7a1c3c42f79c0/badge.svg)](https://www.quantifiedcode.com/app/project/54a4decaa92b4d2483d7a1c3c42f79c0)
+[![Build Status](https://travis-ci.org/andela-lkabui/checkpoint4.svg?branch=develop)](https://travis-ci.org/andela-lkabui/checkpoint4)
 [![Coverage Status](https://coveralls.io/repos/github/andela-lkabui/checkpoint4/badge.svg?branch=develop)](https://coveralls.io/github/andela-lkabui/checkpoint4?branch=develop)
+[![Code Issues](https://www.quantifiedcode.com/api/v1/project/54a4decaa92b4d2483d7a1c3c42f79c0/badge.svg)](https://www.quantifiedcode.com/app/project/54a4decaa92b4d2483d7a1c3c42f79c0)
 
 ## Introduction
 *  **`Vistagrid`** is a Django Powered Photo Editing App.
