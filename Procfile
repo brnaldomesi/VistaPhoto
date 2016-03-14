@@ -1,0 +1,1 @@
+web: gunicorn vistagrid.wsgi --log-file -
