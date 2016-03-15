@@ -70,7 +70,7 @@ class PhotoViewSet(viewsets.ModelViewSet):
 		on this viewset.)"""
 		if self.kwargs.get('pk'):
 			return Photo.objects.filter(pk=self.kwargs.get('pk'))
-		return self.queryset
+		return self.queryset.filter(owner=self.request.user)
 
 	def get_object(self):
 		"""Override this method so that IsOwner permissions can take effect from
