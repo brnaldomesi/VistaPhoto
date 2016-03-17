@@ -12,7 +12,8 @@ vistagrid.config(['$resourceProvider', function ($resourceProvider) {
 vistagrid.config(function ($routeProvider) {
 	$routeProvider
 	.when('/', {
-		templateUrl: 'static/views/login.html'
+		templateUrl: 'static/views/login.html',
+		controller: 'LoginController'
 	})
 	.when('/dashboard', {
 		templateUrl: 'static/views/dashboard.html',
