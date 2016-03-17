@@ -56,3 +56,9 @@
     animation: blink 0.7s infinite;
 }
 
+#header_logo {
+	font-family: 'Fredericka the Great', cursive;
+	font-size: 2em;
+	color: #ffffff;
+	cursor: pointer;
+}

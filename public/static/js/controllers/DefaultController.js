@@ -1,4 +1,7 @@
 vistagrid.controller('DefaultController',
-	['$rootScope', '$scope', function($rootScope, $scope) {
-
+	['$rootScope', '$scope', '$cookies', function($rootScope, $scope, $cookies) {
+        $scope.logout = function () {
+            $rootScope.showLogoutButton = false;
+            $cookies.remove('isLoggedIn');
+        }
 }]);
