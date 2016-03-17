@@ -1,6 +1,6 @@
 vistagrid.controller('DashboardController',
-	['$scope', 'PhotoService', 'Upload', 'FacebookService', '$rootScope', '$location',
-	function ($scope, PhotoService, Upload, FacebookService, $rootScope, $location) {
+	['$scope', 'PhotoService', 'Upload', 'AuthService', '$rootScope', '$location',
+	function ($scope, PhotoService, Upload, AuthService, $rootScope, $location) {
 		var clickedPhotoID = null;
 
 		var fetchUploads = function () {
@@ -16,14 +16,13 @@ vistagrid.controller('DashboardController',
 
 		var checkLogin = function () {
 			console.log('Checking login credentials!');
-			FacebookService.loginStatus().then(
+			AuthService.loginStatus.get().$promise.then(
 				function (response) {
-					console.log(response);
 					fetchUploads();
 				},
 				function (error) {
 					$location.path('/');
-					var $toastContent = $('<span style="font-weight: bold">Facebook login required.</span>');
+					var $toastContent = $('<span style="font-weight: bold">Please login via Facebook.</span>');
 					Materialize.toast($toastContent, 5000);
 				}
 			);
