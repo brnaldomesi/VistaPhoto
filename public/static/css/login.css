@@ -12,6 +12,11 @@
 	padding-top: 1em;
 }
 
+#logo_text {
+	font-family: 'Fredericka the Great', cursive;
+	font-size: 4em;
+}
+
 #fb_logo {
 	margin-right: 0.5em;
 }
@@ -21,7 +26,7 @@
 }
 
 #app_description {
-	font-size: 2em;
+	font-size: 1.5em;
 }
 
 #logo_div {
@@ -43,3 +48,11 @@
 	border: solid #ffffff;
 	border-width: thin;
 }
+
+.typed-cursor{
+    opacity: 1;
+    -webkit-animation: blink 0.7s infinite;
+    -moz-animation: blink 0.7s infinite;
+    animation: blink 0.7s infinite;
+}
+
