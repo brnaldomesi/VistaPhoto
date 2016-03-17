@@ -4,6 +4,7 @@
 <head>
 	<!-- Scripts - Framework -->
 	<script src="{% static 'bower_components/jquery/dist/jquery.js' %}"></script>
+	<script src="{% static 'bower_components/typed.js/dist/typed.min.js' %}"></script>
 	<script src="{% static 'bower_components/Materialize/dist/js/materialize.js' %}"></script>
 	<script src="{% static 'bower_components/angular/angular.js' %}"></script>
 	<script src="{% static 'bower_components/angular-route/angular-route.js' %}"></script>
@@ -14,7 +15,8 @@
 	<!-- Scripts - mine -->
 	<script src="{% static 'js/app.js' %}"></script>
 	<script src="{% static 'js/services/PhotoService.js' %}"></script>
-	<script src="{% static 'js/services/FacebookService.js' %}"></script>
+	<script src="{% static 'js/services/AuthService.js' %}"></script>
+	<script src="{% static 'js/controllers/LoginController.js' %}"></script>
 	<script src="{% static 'js/controllers/DefaultController.js' %}"></script>
 	<script src="{% static 'js/controllers/DashboardController.js' %}"></script>
 	<!-- Css -->
@@ -27,12 +29,13 @@
 	<!-- Favicon -->
 	<link rel="shortcut icon" href="{% static 'images/favicon.ico' %}">
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
 	<title>Vistagrid</title>
 </head>
 <body>
 	<header>
 	</header>
-	<main>
+	<main style="background-image: url('static/images/landing.jpg');">
 		{% block content %}
 		{% endblock %}
 	</main>
