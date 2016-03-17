@@ -1,4 +1,4 @@
-var vistagrid = angular.module('vistagrid', ['ngRoute', 'ngResource', 'ngFileUpload']);
+var vistagrid = angular.module('vistagrid', ['ngRoute', 'ngResource', 'ngFileUpload', 'ngCookies']);
 
 vistagrid.config(function ($interpolateProvider) {
 	$interpolateProvider.startSymbol('[[');
