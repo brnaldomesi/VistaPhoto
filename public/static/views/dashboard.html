@@ -15,7 +15,6 @@
 					</div>
 					<div class="row">
 						<div class="center">
-							<!-- <button type="file"  nfg-max-ratio="8:5" accept="image/*" >Upload Photo</button> -->
 							<a class="waves-effect waves-light btn" id="upload_button" ngf-select="uploadNewPhoto($file, $invalidFiles)" accept="image/*"><i id="upload_icon" class="fa fa-upload"></i>Upload</a>
 						</div>
 					</div>
@@ -28,9 +27,8 @@
 					</div>
 					<div class="row">
 						<div class="col s12" ng-show="!showMain" style="height: 26em;">
-							<img src="static/images/logo.png" style="max-height: 100%; max-width: 100%;">
+							<p class="frederika_placeholder">[Vistagrid]</p>
 						</div>
-						<!-- <div class="col s12"> -->
 						<div ng-show="showMain" class="card" style="border: solid #616161; border-width: thin; border-radius: 5px; height: 35em;">
 							<div class="card-image" style="max-height: 24em; height: 24em; padding: 1em 21em;">
 								<img ng-src="[[clickedPhoto.path]]" style="height: 80%; max-width: 100%;">
@@ -44,20 +42,12 @@
 								</div>
 							</div>
 						</div>
-
 					</div>
 					<div class="row">
-						<!-- <div ng-show="showMain" class="col s12"  style="height: 9em; margin: 1em; border-radius: 5px; width: auto; overflow-x: scroll; overflow-y: hidden; white-space: nowrap; padding-right: 1em; padding-left: 1em;">
-							<div ng-repeat="thumbnail in thumbnails" class="col s2 effects_div" style="height: 7em;">
-								<img ng-src="[[ thumbnail.path ]]" ng-click="effectPreview(thumbnail.effect_id)" class="effects_thumbnail"/>
-								<p class="effect_name_paragraph">[[ thumbnail.effect_name ]]</p>
-							</div>
-						</div> -->
-						<div ng-show="!showMain" style="height: 7em; margin: 1em; border-radius: 5px; width: auto; overflow-x: scroll; overflow-y: hidden; white-space: nowrap; padding-right: 1em; padding-left: 1em;">
-							No photos clicked yet.
+						<div ng-show="!showMain" class="frederika_dash_instructions" style="height: 4em; margin: 1em; border-radius: 5px; width: auto; overflow-x: scroll; overflow-y: hidden; white-space: nowrap; padding-right: 1em; padding-left: 1em;">
+							[[ uploads.length > 0 ? dashboardInstructions.hasUploads : dashboardInstructions.noUploads ]]
 						</div>
 					</div>
-
 			</div>
 		</div>
 	</div>

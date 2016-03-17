@@ -2,6 +2,10 @@ vistagrid.controller('DashboardController',
 	['$scope', 'PhotoService', 'Upload', 'AuthService', '$rootScope', '$location',
 	function ($scope, PhotoService, Upload, AuthService, $rootScope, $location) {
 		var clickedPhotoID = null;
+		$scope.dashboardInstructions = {
+			noUploads: 'To get started, upload some photos',
+			hasUploads: 'Click on an uploaded photo to begin'
+		};
 
 		var fetchUploads = function () {
 			PhotoService.Uploads.getAll().$promise.then(
@@ -15,7 +19,6 @@ vistagrid.controller('DashboardController',
 		};
 
 		var checkLogin = function () {
-			console.log('Checking login credentials!');
 			AuthService.loginStatus.get().$promise.then(
 				function (response) {
 					fetchUploads();
