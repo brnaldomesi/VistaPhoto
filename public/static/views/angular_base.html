@@ -2,15 +2,6 @@
 
 {% block content %}
 <div ng-controller='DefaultController' ng-init="fb_url = '{% url 'social:begin' 'facebook' %}'">
-	<div class="row" id="thin_header" style="margin-bottom: 0px;">
-		<div class="col s3" ng-show="showLogoutButton">
-			<h3 id="header_logo">[Vistagrid]</h3>
-		</div>
-		<div id="logout_button_div">
-			<a ng-show="showLogoutButton" ng-click="logout()" class="waves-effect waves-light btn right" id="logout_button"  href="{% url 'auth:logout' %}?next=/">Logout</a>
-			<!-- ng-show="loggedIn" -->
-		</div>
-	</div>
 	<div class="row">
 		<div ng-view>
 

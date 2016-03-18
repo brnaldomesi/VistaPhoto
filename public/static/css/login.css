@@ -26,7 +26,10 @@
 }
 
 #app_description {
-	font-size: 1.5em;
+	font-size: 1.2em;
+	text-align: center;
+	font-family: 'Arial', cursive;
+	font-weight: bold;
 }
 
 #logo_div {
@@ -61,4 +64,44 @@
 	font-size: 2em;
 	color: #ffffff;
 	cursor: pointer;
+}
+
+#login_parent_div {
+	background-image: url('../images/lens.jpeg');
+	background-size: cover;
+	background-repeat: no-repeat;
+	min-height: 48em;
+
+}
+
+#login_placeholder_div {
+	min-height: 1em;
+}
+
+#facebook_button_div {
+	margin: auto;
+	width: 51%;
+	padding-top: 3em;
+}
+
+#login_logo {
+	font-family: 'Lobster', cursive;
+	font-size: 5em;
+	text-align: center;
+	border-top: solid 9px;
+	border-bottom: solid 9px;
+}
+
+#facebook_login_button {
+	text-transform: capitalize;
+	background-color: #3b5998;
+	width: 13em;
+}
+
+.btn i, .btn-large i, .btn-floating i, .btn-large i, .btn-flat i {
+	font-size: 1em;
+}
+
+.btn, .btn-large, .btn-flat {
+	padding: 0 0.1em;
 }
