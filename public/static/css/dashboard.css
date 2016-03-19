@@ -1,7 +1,4 @@
-#upload_button {
-	background-color: #ffffff;
-	color: #3b5998;
-}
+/*#
 
 #save_button {
 	background-color: #ffffff;
@@ -27,9 +24,7 @@
 	border-width: thin;
 }
 
-.facebook_blue_icon {
-	color: #3b5998 !important;
-}
+
 
 #controls_div {
 	padding: 1em 1em 0.5em 1em;
@@ -59,11 +54,7 @@
 	padding-left: 0.2em;
 }
 
-.upload_file_name {
-	font-weight: bold;
-	color: #757575 !important;
-	word-wrap: break-word !important;
-}
+
 
 #upload_icon {
 	margin-right: 0.5em;
@@ -79,4 +70,92 @@
 	font-family: 'Fredericka the Great', cursive;
 	font-size: 2em;
 	color: #ababab;
+}*/
+
+#header_div {
+	background: #b0bec5;
+	min-height: 3.5em;
+}
+
+#header_logo {
+	font-family: 'Lobster', cursive;
+	font-size: 2em;
+	margin: 0px;
+	cursor: pointer;
+}
+
+#dashboard_body {
+	height: 44.5em;
+	/*background-color: #0000ff;*/
+	padding: 3em;
+}
+
+#main_dashboard_div {
+	min-height: 48em;
+}
+
+#uploads_div {
+	height: 41em;
+	/*background-color: #ffffff;*/
+}
+
+#upload_control_div {
+	height: 41em;
+	/*background-color: #00ff00;*/
+}
+
+div.uploaded_photos_div {
+	height: 35em;
+	/*background-color: wheat;*/
+	overflow: scroll;
+}
+
+div.upload_button_div {
+	height: 5em;
+	/*background-color: aqua;*/
+}
+
+#upload_clicked_div {
+	height: 35em;
+	/*background-color: #e0e0e0;*/
+}
+
+#upload_clicked_div .main_photo_div {
+	height: 25em;
+	background-size: contain;
+	background-repeat: no-repeat;
+	background-position: center;
+}
+#upload_share_div {
+	height: 5em;
+	/*background-color: #ffffff;*/
+}
+
+.upload_cards {
+	border: solid #bdbdbd;
+	border-width: thin;
+	border-radius: 5px;
+}
+
+.upload_cards div {
+	height: 8em;
+}
+
+.upload_cards div img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+.upload_file_name {
+	font-weight: bold;
+	color: #bdbdbd !important;
+	word-wrap: break-word !important;
+}
+
+#upload_button {
+	background-color: #424242;
+}
+
+.grey_darken_3 {
+	color: #424242 !important;
 }
