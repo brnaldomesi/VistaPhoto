@@ -116,12 +116,12 @@ div.upload_button_div {
 }
 
 #upload_clicked_div {
-	height: 35em;
+	height: 24em;
 	/*background-color: #e0e0e0;*/
 }
 
 #upload_clicked_div .main_photo_div {
-	height: 25em;
+	height: 24em;
 	background-size: contain;
 	background-repeat: no-repeat;
 	background-position: center;
@@ -158,4 +158,22 @@ div.upload_button_div {
 
 .grey_darken_3 {
 	color: #424242 !important;
+}
+
+.fa_rounded_buttons {
+	font-size: 3em;
+	color: white;
+}
+
+/* position the FAB just the way we want it*/
+.fixed-action-btn {
+	right: 0px;
+	bottom: 0px;
+	padding: 0px;
+	margin: 0px;
+}
+
+/* The FAB buttons should appear on the same line*/
+.fixed-action-btn.horizontal ul li {
+	margin: 0 15px 0 0;
 }

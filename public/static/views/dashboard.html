@@ -1,5 +1,5 @@
 <div class="row" id="main_dashboard_div">
-
+<!-- Header -->
 	<div id="header_div" class="col s12">
 		<div class="col s3 center">
 			<a href="/#/" id="header_logo" class="grey-text text-darken-3">Vistagrid</a>
@@ -8,67 +8,59 @@
 			<p class="right">Facebook username with pic</p>
 		</div>
 	</div>
-
+	<!-- Below the header -->
 	<div class="col s12" id="dashboard_body">
-
 		<div class="col s3" id="uploads_div">
+			<!-- Uploads strip -->
 			<div class="uploaded_photos_div">
-
-
-
-						<div class="card" ng-repeat="upload in uploads" class="upload_cards">
-							<!-- <div class="card-image" style="height: 8em;"> -->
-							<div class="card-image">
-								<img ng-src="[[upload.path]]" ng-click="uploadClicked(upload.photo_id, upload.file_url)">
-								<!-- <img ng-src="[[upload.path]]" ng-click="uploadClicked(upload.photo_id, upload.file_url)" style="max-width: 100%; max-height: 100%;"> -->
-							</div>
-							<div class="card-content">
-								<p class="upload_file_name">[[upload.file_name]]</p>
-							</div>
-						</div>
-
-
-
-
-
-
-			</div>
-			<div class="upload_button_div">
-
-
-					<div class="center">
-						<a class="waves-effect waves-light btn" id="upload_button" ngf-select="uploadNewPhoto($file, $invalidFiles)" accept="image/*"><i class="fa fa-upload"></i>Upload</a>
+				<div class="card" ng-repeat="upload in uploads" class="upload_cards">
+					<div class="card-image">
+						<img ng-src="[[upload.path]]" ng-click="uploadClicked(upload.photo_id, upload.file_url)">
 					</div>
-
-
-
+					<div class="card-content">
+						<p class="upload_file_name">[[upload.file_name]]</p>
+					</div>
+				</div>
+			</div>
+			<!-- Upload button section -->
+			<div class="upload_button_div">
+				<div class="center">
+					<a class="waves-effect waves-light btn" id="upload_button" ngf-select="uploadNewPhoto($file, $invalidFiles)" accept="image/*"><i class="fa fa-upload"></i>Upload</a>
+				</div>
 			</div>
 		</div>
 
 		<div class="col s9" id="upload_control_div">
-			<div class="col s12" id="upload_share_div">
-
-
-								<span class="btn-floating btn-large btn-flat waves-effect waves-light" id="share_button" ng-click="shareViaFacebook()"><i class="fa fa-share grey_darken_3"></i></span>
-						<a class="btn-floating btn-large btn-flat waves-effect waves-light" id="save_button" ng-click="saveEdits()"><i class="fa fa-floppy-o grey_darken_3"></i></a>
-						<a class="btn-floating btn-large btn-flat waves-effect waves-light" id="delete_button" ng-click="deletePhoto()"><i class="fa fa-trash grey_darken_3"></i></a>
-
-
-
-
-
+		<!-- Share, control and delete buttons section -->
+			<div class="col 12 right" id="upload_share_div">
+				<div class="fixed-action-btn horizontal" style="position: relative;">
+					<a class="btn-floating btn-large blue-grey lighten-3">
+						<i class="fa fa-ellipsis-h grey_darken_3"></i>
+					</a>
+					<ul>
+			      <li>
+			      	<a class="btn-floating btn-large btn-flat waves-effect waves-light red" id="delete_button" ng-click="deletePhoto()"><i class="fa fa-trash fa_rounded_buttons"></i></a>
+				    </li>
+			      <li>
+			      	<span class="btn-floating btn-large btn-flat waves-effect waves-light teal" id="share_button" ng-click="shareViaFacebook()"><i class="fa fa-share fa_rounded_buttons"></i></span>
+				    </li>
+				    <li>
+			      	<a class="btn-floating btn-large btn-flat waves-effect waves-light blue" id="save_button" ng-click="saveEdits()"><i class="fa fa-floppy-o fa_rounded_buttons"></i></a>
+				    </li>
+			    </ul>
+				</div>
 			</div>
+
+
+			<!-- Main display section -->
 			<div class="col s12" id="upload_clicked_div">
-
-
-							<div class="main_photo_div" style="background-image: url([[clickedPhoto.path]]);" >
-							</div>
-
-
+				<div class="main_photo_div col s12" style="background-image: url([[clickedPhoto.path]]);" >
+				</div>
 			</div>
+			<!-- Effects preview section -->
+
 		</div>
 	</div>
-
 </div>
 <!-- <div class="row"> -->
 	<!-- <div class="col s12" style="background-color: #efefef; min-height: 42em;">
