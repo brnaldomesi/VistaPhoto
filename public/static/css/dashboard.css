@@ -213,3 +213,27 @@ div.upload_button_div {
 	font-weight: bold;
 	background-color: #000000;
 }
+
+#username_div {
+	display: inline-block;
+	margin: 1em;
+	transform: translateY(-1em);
+	font-weight: bold;
+	color: #424242;
+	text-transform: capitalize;
+}
+
+#username_div span {
+	font-weight: normal;
+}
+#user_profile_picture_div {
+	display: inline-block;
+	height: 3em;
+	width: 3em;
+	border: solid;
+	border-width: thin;
+	border-radius: 50%;
+	background-size: contain;
+	background-repeat: no-repeat;
+	background-position: center;
+}

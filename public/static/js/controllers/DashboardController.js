@@ -21,9 +21,12 @@ vistagrid.controller('DashboardController',
 		var checkLogin = function () {
 			AuthService.loginStatus.get().$promise.then(
 				function (response) {
+					console.log(response);
 					$cookies.put('isLoggedIn', true);
 					$rootScope.showLogoutButton = true;
 					fetchUploads();
+					$scope.username = response.username;
+					$scope.profile_picture = 'https://graph.facebook.com/' + response.uid + '/picture'
 				},
 				function (error) {
 					$location.path('/');
@@ -74,6 +77,7 @@ vistagrid.controller('DashboardController',
 		};
 
 		$scope.uploadNewPhoto = function (file, errFiles) {
+			$scope.uploadInProgress = true;
 			if (file) {
 				var data = {
 					url: '/api/photos/',
@@ -84,12 +88,16 @@ vistagrid.controller('DashboardController',
 				}
 				Upload.upload(data).then(
 					function (response) {
+						$scope.uploadInProgress = false;
 						fetchUploads();
 						var $toastContent = $('<span style="font-weight: bold">Photo uploaded!</span>');
 						Materialize.toast($toastContent, 5000);
 					},
 					function (error) {
+						$scope.uploadInProgress = false;
 						console.log(error);
+						var $toastContent = $('<span style="font-weight: bold">Photo not uploaded!</span>');
+						Materialize.toast($toastContent, 5000);
 					}
 				);
 			}
