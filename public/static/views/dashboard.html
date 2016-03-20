@@ -58,6 +58,19 @@
 				</div>
 			</div>
 			<!-- Effects preview section -->
+			<div class="col s12" id="effect_thumbnails_div">
+				<!-- Width more than 100% triggers horizontal scroll in HTML-->
+				<div style="width: 150%; height: 100%">
+					<div style="display: inline-block;" ng-repeat="thumbnail in thumbnails">
+						<div class="effect_preview_span"  style="background-image: url([[thumbnail.path]]);" >
+						</div>
+						<div class="effect_name">[[ thumbnail.effect_name ]]</div>
+					</div>
+
+				</div>
+
+
+			</div>
 
 		</div>
 	</div>

@@ -177,3 +177,39 @@ div.upload_button_div {
 .fixed-action-btn.horizontal ul li {
 	margin: 0 15px 0 0;
 }
+
+#effect_thumbnails_div {
+	overflow-y: hidden;
+	overflow-x: scroll;
+	height: 11em;
+}
+
+#effect_thumbnails_div div div .effect_preview_span {
+	 height: 6em;
+	 background-size: contain;
+	 background-repeat: no-repeat;
+	 background-position: center;
+	 display: inline-block;
+	 margin: 1em;
+	 width: 11em;
+}
+
+#effect_thumbnails_div div div .effect_name{
+	 background-color: #b0bec5;
+	 font-weight: bold;
+	 color: #ffffff;
+	 border-radius: 5px;
+	 margin: 0em 3em 0em 3em;
+	 position: relative;
+	 text-align: center;
+}
+
+#effect_thumbnails_div div p {
+	font-size: 1em;
+}
+
+.effect_name_span {
+	color: #ffffff;
+	font-weight: bold;
+	background-color: #000000;
+}
