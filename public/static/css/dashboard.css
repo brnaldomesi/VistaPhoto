@@ -154,6 +154,13 @@ div.upload_button_div {
 
 #upload_button {
 	background-color: #424242;
+	margin-top: 2em;
+	padding-right: 1em;
+	text-transform: capitalize;
+}
+
+#upload_button i {
+	padding: 0em 1em;
 }
 
 .grey_darken_3 {
