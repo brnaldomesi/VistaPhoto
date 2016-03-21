@@ -6,6 +6,7 @@ vistagrid.controller('DashboardController',
 			noUploads: 'To get started, upload some photos',
 			hasUploads: 'Click on an uploaded photo to begin'
 		};
+		$(".dropdown-button").dropdown();
 
 		var fetchUploads = function () {
 			PhotoService.Uploads.getAll().$promise.then(
@@ -49,6 +50,7 @@ vistagrid.controller('DashboardController',
 
 		$scope.uploadClicked = function (photo_id, path) {
 			$scope.loadingThumbnails = true;
+			$scope.uploadPhotoClicked = true;
 			var data = {
 				photo_id: photo_id
 			};
@@ -126,7 +128,7 @@ vistagrid.controller('DashboardController',
 						text: "You cannot undo the changes you are about to make!",
 						type: "warning",
 						showCancelButton: true,
-						confirmButtonColor: "#3b5998",
+						confirmButtonColor: "#424242",
 						confirmButtonText: "Yes, save!",
 						closeOnConfirm: true
 					},
@@ -171,6 +173,7 @@ vistagrid.controller('DashboardController',
 					};
 					PhotoService.Uploads.delete(data).$promise.then(
 						function (response) {
+							$scope.uploadPhotoClicked = false;
 							fetchUploads();
 							var $toastContent = $('<span style="font-weight: bold">Delete successful!</span>');
 							Materialize.toast($toastContent, 5000);

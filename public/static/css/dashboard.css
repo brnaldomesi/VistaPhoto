@@ -1,77 +1,3 @@
-/*#
-
-#save_button {
-	background-color: #ffffff;
-	margin-left: 3em;
-	color: #3b5998;
-	border: solid #3b5998;
-	border-width: thin;
-}
-
-#delete_button {
-	background-color: #ffffff;
-	margin-left: 3em;
-	margin-right: 3em;
-	color: #3b5998;
-	border: solid #3b5998;
-	border-width: thin;
-}
-
-#share_button {
-	margin-left: 3em;
-	background-color: #ffffff;
-	border: solid #3b5998;
-	border-width: thin;
-}
-
-
-
-#controls_div {
-	padding: 1em 1em 0.5em 1em;
-}
-
-.effects_div {
-	height: 4em;
-	width: 5em;
-	padding: 0em;
-	margin: 0em;
-}
-
-.effects_thumbnail {
-	height: 5em;
-	max-width: 100%;
-}
-
-.effect_name_paragraph {
-	margin: 0px;
-	padding: 0px;
-	font-weight: bold;
-}
-
-.card {
-	padding-top: 1.4em;
-	padding-right: 0.2em;
-	padding-left: 0.2em;
-}
-
-
-
-#upload_icon {
-	margin-right: 0.5em;
-}
-
-.frederika_placeholder {
-	font-family: 'Fredericka the Great', cursive;
-	font-size: 10em;
-	color: #ababab;
-}
-
-.frederika_dash_instructions {
-	font-family: 'Fredericka the Great', cursive;
-	font-size: 2em;
-	color: #ababab;
-}*/
-
 #header_div {
 	background: #b0bec5;
 	min-height: 3.5em;
@@ -86,7 +12,7 @@
 
 #dashboard_body {
 	height: 44.5em;
-	/*background-color: #0000ff;*/
+	background-color: #eceff1;
 	padding: 3em;
 }
 
@@ -96,39 +22,41 @@
 
 #uploads_div {
 	height: 41em;
-	/*background-color: #ffffff;*/
+	background-color: #eceff1;
 }
 
 #upload_control_div {
 	height: 41em;
-	/*background-color: #00ff00;*/
 }
 
 div.uploaded_photos_div {
 	height: 35em;
-	/*background-color: wheat;*/
 	overflow: scroll;
+}
+
+.uploaded_photos_div .card {
+	border: solid #bdbdbd 1px;
 }
 
 div.upload_button_div {
 	height: 5em;
-	/*background-color: aqua;*/
 }
 
 #upload_clicked_div {
 	height: 24em;
-	/*background-color: #e0e0e0;*/
 }
 
 #upload_clicked_div .main_photo_div {
-	height: 24em;
+	height: 22em;
 	background-size: contain;
 	background-repeat: no-repeat;
 	background-position: center;
+	margin: 1em 0em 1em 0em;
 }
 #upload_share_div {
 	height: 5em;
-	/*background-color: #ffffff;*/
+	background-color: #fafafa;
+	width: 100%;
 }
 
 .upload_cards {
@@ -181,13 +109,14 @@ div.upload_button_div {
 
 /* The FAB buttons should appear on the same line*/
 .fixed-action-btn.horizontal ul li {
-	margin: 0 15px 0 0;
+	/*margin: 0 15px 0 0;*/
 }
 
 #effect_thumbnails_div {
 	overflow-y: hidden;
 	overflow-x: scroll;
 	height: 11em;
+	background-color: #fafafa;
 }
 
 #effect_thumbnails_div div div .effect_preview_span {
@@ -258,4 +187,32 @@ div.upload_button_div {
 
 .progress .indeterminate{
 	background-color: #b0bec5;
+}
+
+#placeholder_logo {
+	font-family: 'Lobster', cursive;
+	font-size: 13em;
+	margin: auto;
+	color: #eceff1;
+}
+
+#placeholder_instructions {
+	margin: auto;
+	font-family: 'Lobster', cursive;
+	color: #eceff1;
+	font-size: 3em;
+}
+
+
+.navbar-fixed {
+	height: 3.5em;
+}
+
+.nav {
+	height: 3.5em;
+}
+
+.nav-wrapper {
+	width: 90%;
+	margin: auto;
 }
