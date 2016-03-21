@@ -59,7 +59,7 @@ class EffectViewSet(viewsets.ModelViewSet):
 
 class PhotoViewSet(viewsets.ModelViewSet):
 	"""Handle CRUD requests to '/photos/' url."""
-	queryset = Photo.objects.all()
+	queryset = Photo.objects.all().order_by('-photo_id')
 	serializer_class = PhotoSerializer
 	permission_classes = (permissions.IsAuthenticated, IsOwner)
 
