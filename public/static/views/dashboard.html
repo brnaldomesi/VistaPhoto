@@ -18,6 +18,15 @@
 	<!-- Below the header -->
 	<div class="col s12" id="dashboard_body">
 		<div class="col s3" id="uploads_div">
+			<!-- Upload button section -->
+			<div class="upload_button_div">
+				<div class="center">
+					<a class="waves-effect waves-light btn" id="upload_button" ngf-select="uploadNewPhoto($file, $invalidFiles)" accept="image/*"><i class="fa fa-upload"></i>Upload</a>
+				</div>
+				<div class="progress" ng-show="uploadInProgress">
+			      <div class="indeterminate"></div>
+			  </div>
+			</div>
 			<!-- Uploads strip -->
 			<div class="uploaded_photos_div">
 				<div class="card" ng-repeat="upload in uploads" class="upload_cards">
@@ -29,15 +38,7 @@
 					</div>
 				</div>
 			</div>
-			<!-- Upload button section -->
-			<div class="upload_button_div">
-				<div class="center">
-					<a class="waves-effect waves-light btn" id="upload_button" ngf-select="uploadNewPhoto($file, $invalidFiles)" accept="image/*"><i class="fa fa-upload"></i>Upload</a>
-				</div>
-				<div class="progress" ng-show="uploadInProgress">
-			      <div class="indeterminate"></div>
-			  </div>
-			</div>
+
 		</div>
 
 		<div class="col s9" id="upload_control_div">
@@ -70,13 +71,18 @@
 			<!-- Effects preview section -->
 			<div class="col s12" id="effect_thumbnails_div">
 				<!-- Width more than 100% triggers horizontal scroll in HTML-->
-				<div style="width: 150%; height: 100%">
+				<div style="width: 150%; height: 100%" ng-hide="loadingThumbnails">
 					<div style="display: inline-block;" ng-repeat="thumbnail in thumbnails">
-						<div class="effect_preview_span"  style="background-image: url([[thumbnail.path]]);" >
+						<div class="effect_preview_span"  style="background-image: url([[thumbnail.path]]);" ng-click="effectPreview(thumbnail.effect_id)" >
 						</div>
 						<div class="effect_name">[[ thumbnail.effect_name ]]</div>
 					</div>
+				</div>
 
+				<div class="valign-wrapper" ng-show="loadingThumbnails" style="height: 11em;">
+					<div class="progress valign"  style="width: 50%; margin: auto;">
+				     <div class="indeterminate"></div>
+				  </div>
 				</div>
 
 

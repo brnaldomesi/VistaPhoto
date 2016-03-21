@@ -154,8 +154,7 @@ div.upload_button_div {
 
 #upload_button {
 	background-color: #424242;
-	margin-top: 2em;
-	padding-right: 1em;
+	padding-right: 2em;
 	text-transform: capitalize;
 }
 
@@ -250,4 +249,13 @@ div.upload_button_div {
 	transform: translateY(-1em);
 	padding: 0em 1em;
 	text-transform: capitalize;
+}
+
+/* Customize loader to match our theme */
+.progress {
+	background-color: #424242;
+}
+
+.progress .indeterminate{
+	background-color: #b0bec5;
 }
