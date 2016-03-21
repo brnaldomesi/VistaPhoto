@@ -21,7 +21,6 @@ vistagrid.controller('DashboardController',
 		var checkLogin = function () {
 			AuthService.loginStatus.get().$promise.then(
 				function (response) {
-					console.log(response);
 					$cookies.put('isLoggedIn', true);
 					$rootScope.showLogoutButton = true;
 					fetchUploads();
@@ -193,5 +192,10 @@ vistagrid.controller('DashboardController',
 
 				}
 			);
+		};
+
+		$scope.logout = function () {
+			$cookies.remove('isLoggedIn');
+			$rootScope.showLogoutButton = false;
 		};
 }]);

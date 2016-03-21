@@ -237,3 +237,10 @@ div.upload_button_div {
 	background-repeat: no-repeat;
 	background-position: center;
 }
+
+#logout_button {
+	border: solid 1px;
+	transform: translateY(-1em);
+	padding: 0em 1em;
+	text-transform: capitalize;
+}

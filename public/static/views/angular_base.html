@@ -1,7 +1,7 @@
 {% extends "base/base.html" %}
 
 {% block content %}
-<div ng-controller='DefaultController' ng-init="fb_url = '{% url 'social:begin' 'facebook' %}'">
+<div ng-controller='DefaultController' ng-init="fb_url = '{% url 'social:begin' 'facebook' %}'; logout_url = '{% url 'auth:logout' %}?next=/#/'">
 	<div class="row">
 		<div ng-view>
 
