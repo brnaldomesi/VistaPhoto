@@ -30,7 +30,7 @@
 }
 
 div.uploaded_photos_div {
-	height: 35em;
+	height: 32em;
 	overflow: scroll;
 }
 
@@ -215,4 +215,20 @@ div.upload_button_div {
 .nav-wrapper {
 	width: 90%;
 	margin: auto;
+}
+
+/* Change the tab colours to suit app's theme colours */
+.tabs .tab a {
+	color: #424242;
+	text-transform: capitalize;
+}
+
+/* Change selected tab indicator colour */
+.tabs .indicator {
+	background-color: #424242;
+}
+
+/* Change hover colour */
+.tabs .tab a:hover {
+	color: #b0bec5;
 }

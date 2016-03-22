@@ -9,7 +9,7 @@
 					<!-- Dropdown Trigger -->
 					<li>
 						<a class="dropdown-button" href="#!" data-activates="dropdown1">[[ username ]]<i class="material-icons right">arrow_drop_down</i></a><ul id="dropdown1" class="dropdown-content" style="width: 143px; position: absolute; top: 0px; left: 589.594px; opacity: 1; display: none;">
-							<li><a href="[[ logout_url ]]" ng-click="logout()">Logout</a></li>
+							<li><a href="[[ logout_url ]]" class="grey-text text-darken-3" ng-click="logout()">Logout</a></li>
 					</ul></li>
 				</ul>
 			</div>
@@ -23,23 +23,35 @@
 	<!-- Below the header -->
 	<div class="col s12" id="dashboard_body">
 		<div class="col s3" id="uploads_div">
-			<!-- Upload button section -->
-			<div class="upload_button_div">
-				<div class="center">
-					<a class="waves-effect waves-light btn" id="upload_button" ngf-select="uploadNewPhoto($file, $invalidFiles)" accept="image/*"><i class="fa fa-upload"></i>Upload</a>
-				</div>
-				<div class="progress" ng-show="uploadInProgress">
-						<div class="indeterminate"></div>
-				</div>
+			<!-- Tabs (3em) -->
+			<div class="row" style="height: 3em;">
+				<ul class="tabs">
+					<li class="tab col s3"><a class="active" href="#upload_photos">Upload Photos</a></li>
+					<li class="tab col s3"><a href="#recent_edits">Recent Edits</a></li>
+				</ul>
 			</div>
-			<!-- Uploads strip -->
-			<div class="uploaded_photos_div">
-				<div class="card" ng-repeat="upload in uploads" class="upload_cards">
-					<div class="card-image">
-						<img ng-src="[[upload.path]]" ng-click="uploadClicked(upload.photo_id, upload.file_url)">
+			<!-- Recent edits strips -->
+			<div id="recent_edits" style="height: 37em;" class="row">Recent Edits Hapa!!</div>
+			<!-- Uploaded photos strip -->
+			<div id="upload_photos" style="height: 37em;" class="row">
+				<div class="upload_button_div">
+					<div class="center">
+						<a class="waves-effect waves-light btn" id="upload_button" ngf-select="uploadNewPhoto($file, $invalidFiles)" accept="image/*"><i class="fa fa-upload"></i>Upload</a>
 					</div>
-					<div class="card-content">
-						<p class="upload_file_name">[[upload.file_name]]</p>
+					<!-- Progress indicator as photo is being uploaded -->
+					<div class="progress" ng-show="uploadInProgress">
+						<div class="indeterminate"></div>
+					</div>
+				</div>
+				<!-- Uploads strip -->
+				<div class="uploaded_photos_div">
+					<div class="card" ng-repeat="upload in uploads" class="upload_cards">
+						<div class="card-image">
+							<img ng-src="[[upload.path]]" ng-click="uploadClicked(upload.photo_id, upload.file_url)">
+						</div>
+						<div class="card-content">
+							<p class="upload_file_name">[[upload.file_name]]</p>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -63,7 +75,7 @@
 		<!-- Share, control and delete buttons section -->
 			<div class="col 12" id="upload_share_div">
 				<div class="fixed-action-btn horizontal right valign-wrapper" style="position: relative; height: 5em;">
-					<a class="btn-floating btn-large blue-grey lighten-3 valign">
+					<a class="btn-floating btn-large btn-flat blue-grey lighten-3 valign">
 						<i class="fa fa-ellipsis-h grey_darken_3"></i>
 					</a>
 					<ul>

@@ -7,6 +7,9 @@ vistagrid.controller('DashboardController',
 			hasUploads: 'Click on an uploaded photo to begin'
 		};
 		$(".dropdown-button").dropdown();
+		$(document).ready(function(){
+		    $('ul.tabs').tabs();
+		 });
 
 		var fetchUploads = function () {
 			PhotoService.Uploads.getAll().$promise.then(
