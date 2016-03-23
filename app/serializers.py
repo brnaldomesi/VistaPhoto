@@ -12,8 +12,11 @@ class EffectSerializer(serializers.ModelSerializer):
 
 
 class PhotoSerializer(serializers.ModelSerializer):
-	"""Serialize the Photo model and also specify the Photo model fields to be
-	returned to the user (or to be expected of the user)."""
+	"""Serialize the Photo model.
+
+	Specify the Photo model fields to be returned to the user (or to be expected
+	of the user).
+	"""
 	file_url = serializers.CharField(source='path.url', read_only=True)
 	file_name = serializers.CharField(source='get_file_name', read_only=True)
 	filter_effects = serializers.ChoiceField(

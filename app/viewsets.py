@@ -64,17 +64,22 @@ class PhotoViewSet(viewsets.ModelViewSet):
 	permission_classes = (permissions.IsAuthenticated, IsOwner)
 
 	def get_queryset(self):
-		"""Override this method so provide both retrieve and list views to user
+		"""Customize get_queryset method.
+
+		Override this method to provide both retrieve and list views to user
 		without a problem. Problem being anticipated here is as a result of
 		overriding 'get_object' below (whose purpose is to apply IsOwner permissions
-		on this viewset.)"""
+		on this viewset.)
+		"""
 		if self.kwargs.get('pk'):
 			return Photo.objects.filter(pk=self.kwargs.get('pk'))
 		return self.queryset.filter(owner=self.request.user)
 
 	def get_object(self):
-		"""Override this method so that IsOwner permissions can take effect from
-		the call to check_object_permissions below.
+		"""Override this method so that IsOwner permissions can be applied.
+
+		Override this method so as to call 'check_object_permissions' for IsOwner
+		permissions to be applied.
 		"""
 		obj = get_object_or_404(self.get_queryset())
 		self.check_object_permissions(self.request, obj)

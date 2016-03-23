@@ -64,12 +64,15 @@ class Effects(models.Model):
 			preview.save(self.path.url[1:])
 
 	def save(self, *args, **kwargs):
-		"""Apply the effects to the file on disk whenever model.save() is called."""
+		"""Apply the effects to the file on disk whenever model.save() is called.
+
+		This method is called after save because the 'path' attribute will refer
+		to 'MEDIA_ROOT' until the model instance is saved. After saving, it refers
+		to 'MEDIA_ROOT/effects/' (which is where we want effects to be uploaded
+		when applying effect previews).
+		"""
 		super(Effects, self).save(*args, **kwargs)
-		# This method is called after save because the 'path' attribute will refer
-		# to 'MEDIA_ROOT' until the model instance is saved. After saving, it refers
-		#  to 'MEDIA_ROOT/effects/' (which is where we want effects to be uploaded
-		# when applying effect previews)
+
 		self.use_effect()
 
 

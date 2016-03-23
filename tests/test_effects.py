@@ -9,8 +9,9 @@ class TestPhotoEffects(TestBaseClass):
 	"""Test the '/api/effects/' url."""
 
 	def tearDown(self):
-		"""Delete all Effects objects (to clean up associated effect files on
-		disk).
+		"""Delete all Effects objects.
+
+		(To clean up associated effect files on disk).
 		"""
 		all_effects = Effects.objects.all()
 		all_effects.delete()
