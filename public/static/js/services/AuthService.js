@@ -1,7 +1,7 @@
 vistagrid.factory('AuthService', ['$resource',
     function ($resource) {
         return {
-            loginStatus: $resource('/api/loginstatus/', {}, {
+            loginStatus: $resource('/api/login/status/', {}, {
                 get: {
                     method: 'GET',
                     isArray: false

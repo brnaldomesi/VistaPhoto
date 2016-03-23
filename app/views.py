@@ -4,6 +4,8 @@ from rest_framework import status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 
+from app.models import SocialAuthUsersocialauth
+
 
 # Create your views here.
 def index(request):
@@ -12,13 +14,20 @@ def index(request):
 
 @api_view(['GET'])
 def is_logged_in(request):
-    """Method view to check if request is coming from a user who is logged in
-    through a Django backends authentication system."""
+    """
+    Method view to check if request is coming from a user who is logged in
+    through a Django backends authentication system.
+    Return logged in status, user's first and last name and user's facebook id.
+    The latter is used to retrieve the user's photo from Facebook.
+    """
     if request.method == 'GET':
         if request.user.is_authenticated():
+            fbObject = SocialAuthUsersocialauth.objects.get(user=request.user)
             return Response(
                 {
-                    'status': 'isLoggedIn'
+                    'status': 'isLoggedIn',
+                    'username': request.user.first_name+ ' ' + request.user.last_name,
+                    'uid': fbObject.uid
                 }, status=status.HTTP_200_OK
             )
         return Response(
