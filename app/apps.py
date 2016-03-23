@@ -4,4 +4,6 @@ from django.apps import AppConfig
 
 
 class AppConfig(AppConfig):
+    """Configure the Django app.
+    """
     name = 'app'

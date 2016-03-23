@@ -27,23 +27,31 @@
   *  **[python-social-auth](https://github.com/omab/python-social-auth)** - This package provides a social authentication/ registration mechanism and has support for various auth providers, including Facebook, Twitter, Dropbox, Github among others. For this app, it was used to intergrate Facebook authentication.
   *  **[Pillow](https://pillow.readthedocs.org/en/3.1.x/)** - This is an active fork of the now discontinued Python Imaging Library. Pillow is the workhorse behind all the image manipulation capabilities in this app.
   *  **[ipdb](https://pypi.python.org/pypi/ipdb)** - The Python debugger. Very handy during the development process.
-  *  **[autoenv](https://github.com/kennethreitz/autoenv)** - This package provides directory based environments. For this app, SOCIAL_AUTH_FACEBOOK_KEY, SOCIAL_AUTH_FACEBOOK_SECRET (python-social-auth) and SECRET_KEY (Django) were set as environment variables and utilized this package's features.
+  *  **[autoenv](https://github.com/kennethreitz/autoenv)** - This package provides directory based environments. For this app, SOCIAL_AUTH_FACEBOOK_KEY`, `SOCIAL_AUTH_FACEBOOK_SECRET (python-social-auth) and SECRET_KEY (Django) were set as environment variables and utilized this package's features.
   *  **[fake-factory](https://pypi.python.org/pypi/fake-factory/0.5.5)** - Used during the creation of Effect objects so as to give random names to files. This feature is essential to trigger refresh of effect previews in the dashboard view whenever an upload is clicked.
+  *  **[coverage](https://pypi.python.org/pypi/coverage)** - A tool for measuring code coverage in Python tests. This measurement is typically used to gauge the effectiveness of tests
+  *  **[DJ-Static](https://github.com/kennethreitz/dj-static)** - A simple Django middleware utility that allows you to properly serve static assets from production with a WSGI server like Gunicorn.
 
 ## Front End Dependencies
 *  **[Materialize CSS](http://materializecss.com/)** - The app's login and dashboard templates have been styled using this CSS framework
 *  **[Angular JS](https://angularjs.org/)** - This framework facilitates the dynamic aspects of this app. It enables the application of the Single Page Application philosophy and also has mechanisms to make calls to the backend to update the view with recent data.
   *  Angular Resource - This is an Angular component that is particularly useful when making calls to a RESTful route.
+  *  Angular Cookies - An Angular component that provides read/write access to a browser's cookies.
 *  **[ng-file-upload](https://github.com/danialfarid/ng-file-upload)** - This library is an angular component that enables file (images in this case) upload and also features a service that enables posting of these uploads to the back end.
 *  **[Sweet Alert](http://t4t5.github.io/sweetalert/)** - This alert framework is used to display warning alerts to the user when he/she is about to delete an upload or save changes after edit.
+*  **[Font Awesome](https://fortawesome.github.io/Font-Awesome/)** - Iconic font and css toolkit.
 
 ## Installation and setup
 *  Navigate to a directory of choice on `terminal`.
-*  clone this repository on that directory.
-  *  Using ssh;
-    *  `git clone git@github.com:andela-lkabui/checkpoint4.git`
-  *  Using http;
-    *  `https://github.com/andela-lkabui/checkpoint4.git`
+*  Clone this repository on that directory.
+  *  Using SSH;
+
+    >`git clone git@github.com:andela-lkabui/checkpoint4.git`
+
+  *  Using HTTP;
+
+    >`https://github.com/andela-lkabui/checkpoint4.git`
+
 *  Navigate to the repo's folder on your computer
   *  `cd checkpoint4/`
 *  Install the app's backend dependencies. For best results, using a [virtual environment](http://virtualenv.readthedocs.org/en/latest/installation.html) is recommended.
@@ -52,7 +60,8 @@
 *  Install the app's front end dependencies using bower.
   *  `./node_modules/bower/bin/bower install`
 
-  ``` In order to use bower, you need to install it through **npm**. You also need to have **node** and **git** installed on your system. ```
+    >In order to use bower, you need to install it through **npm**. You also need to have **node** and **git** installed on your system.
+
 *  Create and apply migrations
   *  `python manage.py makemigrations app`
   *  `python manage.py migrate app`

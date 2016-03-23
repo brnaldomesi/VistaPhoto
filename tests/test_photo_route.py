@@ -45,8 +45,9 @@ class TestPhotoAPIRoute(TestBaseClass):
 		)
 
 	def test_upload_no_photo_selected(self):
-		"""Test authenticated POST request to '/api/photos/' url when no upload
-		photo has been specified.
+		"""Test authenticated POST request to '/api/photos/' url.
+
+		Test this when no upload photo has been specified.
 		"""
 		url = '/api/photos/'
 		# authenticate the user
@@ -63,8 +64,9 @@ class TestPhotoAPIRoute(TestBaseClass):
 		)
 
 	def test_upload_no_effect_specified(self):
-		"""Test authenticated POST request to '/api/photos/' url when no effect
-		has been specified.
+		"""Test authenticated POST request to '/api/photos/' url.
+
+		Test this when no effect has been specified.
 		"""
 		url = '/api/photos/'
 		# authenticate the user
@@ -98,32 +100,4 @@ class TestPhotoAPIRoute(TestBaseClass):
 		self.assertEqual(response.status_text, 'No Content')
 		all_photos = Photo.objects.all()
 		self.assertEqual(len(all_photos), 0)
-
-	def test_image_effect(self):
-		"""Test successful PUT to '/api/photos/' url."""
-		pass
-		# url = '/api/photos/'
-		# self.login_user()
-		# # create a photo
-		# data = {
-		# 	'path': self.uploadable_image(),
-		# 	'filter_effects': 'BLUR'
-		# }
-		# self.client.post(url, data=data)
-		# # fetch photo id
-		# response = self.client.get(url)
-		# photo_id = response.data[0].get('photo_id')
-		# url += str(photo_id) + '/'
-
-		# selected_effect = {
-		# 	'filter_effects': self.get_random_filter()
-		# }
-		# response = self.client.put(url, data=selected_effect)
-		# import ipdb; ipdb.set_trace()
-		# login
-		# post a photo
-		# fetch its id
-		# create url
-		# send a PUT
-		# assert results
 
