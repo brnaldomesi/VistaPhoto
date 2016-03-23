@@ -4,7 +4,8 @@ from .models import Photo, Effects
 
 
 class EffectSerializer(serializers.ModelSerializer):
-	"""Serialize the effects model."""
+	"""Serialize the effects model.
+	"""
 	class Meta:
 		model = Effects
 		fields = ('effect_id', 'effect_name', 'path')

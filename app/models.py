@@ -22,13 +22,15 @@ FILTERS = {
 
 
 class Photo(models.Model):
-	"""Photo ORM model."""
+	"""Photo ORM model.
+	"""
 	photo_id = models.AutoField(primary_key=True)
 	path = models.ImageField()
 	owner = models.ForeignKey(User, on_delete=models.CASCADE)
 
 	def use_effect(self, effect):
-		"""Modifies an image with the specified effect."""
+		"""Modifies an image with the specified effect.
+		"""
 		if effect in FILTERS:
 			photo = Image.open(self.path)
 			photo = photo.filter(FILTERS.get(effect))
@@ -36,19 +38,27 @@ class Photo(models.Model):
 			photo.save(self.path.url[1:])
 
 	def get_file_name(self):
-		"""Returns the name of the file that this model is associated with."""
+		"""Returns the name of the file that this model is associated with.
+		"""
 		return self.path.name[2:]
+
+	def __str__(self):
+		"""Customize representation of this model's instance.
+		"""
+		return '{0}'.format(self.path.name[2:])
 
 
 def effects_file_name(instance, filename):
-	"""Return upload path to be used in path attribute of Effects model."""
+	"""Return upload path to be used in path attribute of Effects model.
+	"""
 	filetime = instance.file_name + instance.effect_name
 	return 'effects/{0}'.format(filetime + '.jpg')
 
 
 # Create your models here.
 class Effects(models.Model):
-	"""Photo edit effects preview ORM."""
+	"""Photo edit effects preview ORM.
+	"""
 	effect_id = models.AutoField(primary_key=True)
 	effect_name = models.CharField(max_length=20)
 	file_name = models.CharField(max_length=50)
@@ -75,6 +85,11 @@ class Effects(models.Model):
 
 		self.use_effect()
 
+	def __str__(self):
+		"""Customize representation of this model's instance.
+		"""
+		return '{0}{1}'.format(self.file_name, self.effect_name)
+
 
 class SocialAuthUsersocialauth(models.Model):
 	"""
@@ -91,6 +106,11 @@ class SocialAuthUsersocialauth(models.Model):
 		managed = False
 		db_table = 'social_auth_usersocialauth'
 		unique_together = (('provider', 'uid'),)
+
+	def __str__(self):
+		"""Customize representation of this model's instance.
+		"""
+		return '{0}{1}'.format(self.user.username, self.provider)
 
 
 @receiver(post_delete, sender=Effects)
