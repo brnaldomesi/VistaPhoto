@@ -6,6 +6,10 @@ vistagrid.controller('DashboardController',
 			noUploads: 'To get started, upload some photos',
 			hasUploads: 'Click on an uploaded photo to begin'
 		};
+		$(".dropdown-button").dropdown();
+		$(document).ready(function(){
+		    $('ul.tabs').tabs();
+		 });
 
 		var fetchUploads = function () {
 			PhotoService.Uploads.getAll().$promise.then(
@@ -24,6 +28,8 @@ vistagrid.controller('DashboardController',
 					$cookies.put('isLoggedIn', true);
 					$rootScope.showLogoutButton = true;
 					fetchUploads();
+					$scope.username = response.username;
+					$scope.profile_picture = 'https://graph.facebook.com/' + response.uid + '/picture'
 				},
 				function (error) {
 					$location.path('/');
@@ -46,6 +52,8 @@ vistagrid.controller('DashboardController',
 		};
 
 		$scope.uploadClicked = function (photo_id, path) {
+			$scope.loadingThumbnails = true;
+			$scope.uploadPhotoClicked = true;
 			var data = {
 				photo_id: photo_id
 			};
@@ -66,6 +74,7 @@ vistagrid.controller('DashboardController',
 			PhotoService.Thumbnails.create(data).$promise.then(
 				function (response) {
 					refreshThumbnails();
+					$scope.loadingThumbnails = false;
 				},
 				function (error) {
 					console.log(error);
@@ -74,6 +83,7 @@ vistagrid.controller('DashboardController',
 		};
 
 		$scope.uploadNewPhoto = function (file, errFiles) {
+			$scope.uploadInProgress = true;
 			if (file) {
 				var data = {
 					url: '/api/photos/',
@@ -84,12 +94,16 @@ vistagrid.controller('DashboardController',
 				}
 				Upload.upload(data).then(
 					function (response) {
+						$scope.uploadInProgress = false;
 						fetchUploads();
 						var $toastContent = $('<span style="font-weight: bold">Photo uploaded!</span>');
 						Materialize.toast($toastContent, 5000);
 					},
 					function (error) {
+						$scope.uploadInProgress = false;
 						console.log(error);
+						var $toastContent = $('<span style="font-weight: bold">Photo not uploaded!</span>');
+						Materialize.toast($toastContent, 5000);
 					}
 				);
 			}
@@ -117,7 +131,7 @@ vistagrid.controller('DashboardController',
 						text: "You cannot undo the changes you are about to make!",
 						type: "warning",
 						showCancelButton: true,
-						confirmButtonColor: "#3b5998",
+						confirmButtonColor: "#424242",
 						confirmButtonText: "Yes, save!",
 						closeOnConfirm: true
 					},
@@ -162,6 +176,7 @@ vistagrid.controller('DashboardController',
 					};
 					PhotoService.Uploads.delete(data).$promise.then(
 						function (response) {
+							$scope.uploadPhotoClicked = false;
 							fetchUploads();
 							var $toastContent = $('<span style="font-weight: bold">Delete successful!</span>');
 							Materialize.toast($toastContent, 5000);
@@ -185,5 +200,10 @@ vistagrid.controller('DashboardController',
 
 				}
 			);
+		};
+
+		$scope.logout = function () {
+			$cookies.remove('isLoggedIn');
+			$rootScope.showLogoutButton = false;
 		};
 }]);

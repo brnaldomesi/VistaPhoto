@@ -1,64 +1,46 @@
-#beach_div {
-	background-color: #efefef;
-	margin: auto;
-	min-height: 20em;
-	max-height: 27em;
-	border-radius: 5px;
-	max-width: 23em;
-}
+#login_parent_div {
+	background-image: url('../images/lens.jpeg');
+	background-size: cover;
+	background-repeat: no-repeat;
+	min-height: 48em;
 
-#logo {
-	height: 10em;
-	padding-top: 1em;
-}
-
-#logo_text {
-	font-family: 'Fredericka the Great', cursive;
-	font-size: 4em;
-}
-
-#fb_logo {
-	margin-right: 0.5em;
-}
-
-#login_button {
-	background-color: #3b5998;
 }
 
 #app_description {
-	font-size: 1.5em;
+	font-size: 1.2em;
+	text-align: center;
+	font-family: 'Arial', cursive;
+	font-weight: bold;
 }
 
-#logo_div {
-	padding: 1em;
+#login_placeholder_div {
+	min-height: 1em;
 }
 
-#login_button_div {
-	padding-top: 1em;
-	padding-bottom: 3em;
+#facebook_button_div {
+	margin: auto;
+	width: 51%;
+	padding-top: 3em;
 }
 
-#logout_button_div {
-	padding-top: 1em;
-	padding-right: 4em;
+#login_logo {
+	font-family: 'Lobster', cursive;
+	font-size: 5em;
+	text-align: center;
+	border-top: solid 9px;
+	border-bottom: solid 9px;
 }
 
-#logout_button {
+#facebook_login_button {
+	text-transform: capitalize;
 	background-color: #3b5998;
-	border: solid #ffffff;
-	border-width: thin;
+	width: 13em;
 }
 
-.typed-cursor{
-    opacity: 1;
-    -webkit-animation: blink 0.7s infinite;
-    -moz-animation: blink 0.7s infinite;
-    animation: blink 0.7s infinite;
+.btn i, .btn-large i, .btn-floating i, .btn-large i, .btn-flat i {
+	font-size: 1em;
 }
 
-#header_logo {
-	font-family: 'Fredericka the Great', cursive;
-	font-size: 2em;
-	color: #ffffff;
-	cursor: pointer;
+.btn, .btn-large, .btn-flat {
+	padding: 0 0.1em;
 }

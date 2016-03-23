@@ -1,82 +1,234 @@
-#upload_button {
-	background-color: #ffffff;
-	color: #3b5998;
+#header_div {
+	background: #b0bec5;
+	min-height: 3.5em;
 }
 
-#save_button {
-	background-color: #ffffff;
-	margin-left: 3em;
-	color: #3b5998;
-	border: solid #3b5998;
-	border-width: thin;
-}
-
-#delete_button {
-	background-color: #ffffff;
-	margin-left: 3em;
-	margin-right: 3em;
-	color: #3b5998;
-	border: solid #3b5998;
-	border-width: thin;
-}
-
-#share_button {
-	margin-left: 3em;
-	background-color: #ffffff;
-	border: solid #3b5998;
-	border-width: thin;
-}
-
-.facebook_blue_icon {
-	color: #3b5998 !important;
-}
-
-#controls_div {
-	padding: 1em 1em 0.5em 1em;
-}
-
-.effects_div {
-	height: 4em;
-	width: 5em;
-	padding: 0em;
-	margin: 0em;
-}
-
-.effects_thumbnail {
-	height: 5em;
-	max-width: 100%;
-}
-
-.effect_name_paragraph {
+#header_logo {
+	font-family: 'Lobster', cursive;
+	font-size: 2em;
 	margin: 0px;
-	padding: 0px;
-	font-weight: bold;
+	cursor: pointer;
 }
 
-.card {
-	padding-top: 1.4em;
-	padding-right: 0.2em;
-	padding-left: 0.2em;
+#dashboard_body {
+	height: 44.5em;
+	background-color: #eceff1;
+	padding: 3em;
+}
+
+#main_dashboard_div {
+	min-height: 48em;
+}
+
+#uploads_div {
+	height: 41em;
+	background-color: #eceff1;
+}
+
+#upload_control_div {
+	height: 41em;
+}
+
+div.uploaded_photos_div {
+	height: 32em;
+	overflow: scroll;
+}
+
+.uploaded_photos_div .card {
+	border: solid #bdbdbd 1px;
+}
+
+div.upload_button_div {
+	height: 5em;
+}
+
+#upload_clicked_div {
+	height: 24em;
+}
+
+#upload_clicked_div .main_photo_div {
+	height: 22em;
+	background-size: contain;
+	background-repeat: no-repeat;
+	background-position: center;
+	margin: 1em 0em 1em 0em;
+}
+#upload_share_div {
+	height: 5em;
+	background-color: #fafafa;
+	width: 100%;
+}
+
+.upload_cards {
+	border: solid #bdbdbd;
+	border-width: thin;
+	border-radius: 5px;
+}
+
+.upload_cards div {
+	height: 8em;
+}
+
+.upload_cards div img {
+	max-width: 100%;
+	max-height: 100%;
 }
 
 .upload_file_name {
 	font-weight: bold;
-	color: #757575 !important;
+	color: #bdbdbd !important;
 	word-wrap: break-word !important;
 }
 
-#upload_icon {
-	margin-right: 0.5em;
+#upload_button {
+	background-color: #424242;
+	padding-right: 2em;
+	text-transform: capitalize;
 }
 
-.frederika_placeholder {
-	font-family: 'Fredericka the Great', cursive;
-	font-size: 10em;
-	color: #ababab;
+#upload_button i {
+	padding: 0em 1em;
 }
 
-.frederika_dash_instructions {
-	font-family: 'Fredericka the Great', cursive;
-	font-size: 2em;
-	color: #ababab;
+.grey_darken_3 {
+	color: #424242 !important;
+}
+
+.fa_rounded_buttons {
+	font-size: 3em;
+	color: white;
+}
+
+/* position the FAB just the way we want it*/
+.fixed-action-btn {
+	right: 0px;
+	bottom: 0px;
+	padding: 0px;
+	margin: 0px;
+}
+
+/* The FAB buttons should appear on the same line*/
+.fixed-action-btn.horizontal ul li {
+	/*margin: 0 15px 0 0;*/
+}
+
+#effect_thumbnails_div {
+	overflow-y: hidden;
+	overflow-x: scroll;
+	height: 11em;
+	background-color: #fafafa;
+}
+
+#effect_thumbnails_div div div .effect_preview_span {
+	 height: 6em;
+	 background-size: contain;
+	 background-repeat: no-repeat;
+	 background-position: center;
+	 display: inline-block;
+	 margin: 1em;
+	 width: 11em;
+}
+
+#effect_thumbnails_div div div .effect_name{
+	 background-color: #b0bec5;
+	 font-weight: bold;
+	 color: #ffffff;
+	 border-radius: 5px;
+	 margin: 0em 3em 0em 3em;
+	 position: relative;
+	 text-align: center;
+}
+
+#effect_thumbnails_div div p {
+	font-size: 1em;
+}
+
+.effect_name_span {
+	color: #ffffff;
+	font-weight: bold;
+	background-color: #000000;
+}
+
+#username_div {
+	display: inline-block;
+	margin: 1em;
+	transform: translateY(-1em);
+	font-weight: bold;
+	color: #424242;
+	text-transform: capitalize;
+}
+
+#username_div span {
+	font-weight: normal;
+}
+#user_profile_picture_div {
+	display: inline-block;
+	height: 3em;
+	width: 3em;
+	border: solid;
+	border-width: thin;
+	border-radius: 50%;
+	background-size: contain;
+	background-repeat: no-repeat;
+	background-position: center;
+}
+
+#logout_button {
+	border: solid 1px;
+	transform: translateY(-1em);
+	padding: 0em 1em;
+	text-transform: capitalize;
+}
+
+/* Customize loader to match our theme */
+.progress {
+	background-color: #424242;
+}
+
+.progress .indeterminate{
+	background-color: #b0bec5;
+}
+
+#placeholder_logo {
+	font-family: 'Lobster', cursive;
+	font-size: 13em;
+	margin: auto;
+	color: #eceff1;
+}
+
+#placeholder_instructions {
+	margin: auto;
+	font-family: 'Lobster', cursive;
+	color: #eceff1;
+	font-size: 3em;
+}
+
+
+.navbar-fixed {
+	height: 3.5em;
+}
+
+.nav {
+	height: 3.5em;
+}
+
+.nav-wrapper {
+	width: 90%;
+	margin: auto;
+}
+
+/* Change the tab colours to suit app's theme colours */
+.tabs .tab a {
+	color: #424242;
+	text-transform: capitalize;
+}
+
+/* Change selected tab indicator colour */
+.tabs .indicator {
+	background-color: #424242;
+}
+
+/* Change hover colour */
+.tabs .tab a:hover {
+	color: #b0bec5;
 }

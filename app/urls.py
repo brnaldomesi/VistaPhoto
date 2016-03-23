@@ -11,5 +11,5 @@ router.register(r'effects', viewsets.EffectViewSet, 'effects')
 
 urlpatterns = [
 	url(r'^', include(router.urls)),
-    url(r'^loginstatus', views.is_logged_in, name='loginstatus')
+    url(r'^login/status/', views.is_logged_in, name='loginstatus')
 ]

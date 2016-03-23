@@ -73,6 +73,23 @@ class Effects(models.Model):
 		self.use_effect()
 
 
+class SocialAuthUsersocialauth(models.Model):
+	"""
+	A read only ORM to query information that is populated by python-social-auth
+	in the 'social_auth_usersocialauth' table.
+	"""
+	id = models.IntegerField(primary_key=True)
+	provider = models.CharField(max_length=32)
+	uid = models.CharField(max_length=255)
+	extra_data = models.TextField()
+	user = models.ForeignKey(User, models.DO_NOTHING)
+
+	class Meta:
+		managed = False
+		db_table = 'social_auth_usersocialauth'
+		unique_together = (('provider', 'uid'),)
+
+
 @receiver(post_delete, sender=Effects)
 def file_cleanup(sender, **kwargs):
 	"""This method deletes associated photo files on disk every time 'delete()'
