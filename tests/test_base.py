@@ -29,6 +29,7 @@ class TestBaseClass(TestCase):
 		del self.test_image
 		if os.path.exists('test.jpg'):
 			os.remove('test.jpg')
+		self.logout_user()
 
 	def login_user(self):
 		"""Authenticate 'self.user'."""
@@ -38,6 +39,11 @@ class TestBaseClass(TestCase):
 			'password': self.password
 		}
 		self.client.post(url, data=data)
+
+	def logout_user(self):
+		"""Send get request to '/logout/' url to logout authenticated users.
+		"""
+		self.client.get('/logout/')
 
 	def uploadable_image(self):
 		"""Create an uploadable object from the 'test.jpg' file on disk."""

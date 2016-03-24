@@ -27,16 +27,22 @@
 			<div class="row" style="height: 3em;">
 				<ul class="tabs">
 					<li class="tab col s3"><a class="active" href="#upload_photos">Upload Photos</a></li>
-					<li class="tab col s3"><a href="#recent_edits">Recent Edits</a></li>
+					<li class="tab col s3"><a href="#recent_edits" ng-click="getRecentEdits()">Recent Edits</a></li>
 				</ul>
 			</div>
 			<!-- Recent edits strips -->
-			<div id="recent_edits" style="height: 37em;" class="row">Recent Edits Hapa!!</div>
+			<div id="recent_edits" style="height: 37em;" class="row">
+				<div class="col s6" ng-repeat="recent in recentEdits" ng-click="recentEditClicked(recent.photo_edit_id)">
+					<div class="recent_div" style="background-image: url([[recent.upload]]); height: 5em; background-repeat: no-repeat; background-size: cover; margin: 0.5em;">
+
+					</div>
+				</div>
+			</div>
 			<!-- Uploaded photos strip -->
 			<div id="upload_photos" style="height: 37em;" class="row">
 				<div class="upload_button_div">
 					<div class="center">
-						<a class="waves-effect waves-light btn" id="upload_button" ngf-select="uploadNewPhoto($file, $invalidFiles)" accept="image/*"><i class="fa fa-upload"></i>Upload</a>
+						<a class="waves-effect waves-light btn tooltipped" data-position="bottom" data-delay="50" data-tooltip="Upload a photo" id="upload_button" ngf-select="uploadNewPhoto($file, $invalidFiles)" accept="image/*"><i class="fa fa-upload"></i>Upload</a>
 					</div>
 					<!-- Progress indicator as photo is being uploaded -->
 					<div class="progress" ng-show="uploadInProgress">
@@ -58,14 +64,24 @@
 
 		</div>
 
-		<!-- To be displayed when no photo has been clicked yet -->
+
 		<div class="col s9" style="height: 41em; background-color: #fafafa;" ng-show="!uploadPhotoClicked">
-			<div style="height: 29em;" class="valign-wrapper">
-				<div id="placeholder_logo" class="center valign">Vistagrid</div>
+			<!-- To be displayed when no upload photo has been clicked yet -->
+			<div ng-show="!editClicked">
+				<div style="height: 29em;" class="valign-wrapper">
+					<div id="placeholder_logo" class="center valign">Vistagrid</div>
+				</div>
+				<div style="height: 11em;" class="valign-wrapper">
+					<div class="valign" id="placeholder_instructions">
+						[[ uploads.length > 0? dashboardInstructions.hasUploads: dashboardInstructions.noUploads]]
+					</div>
+				</div>
 			</div>
-			<div style="height: 11em;" class="valign-wrapper">
-				<div class="valign" id="placeholder_instructions">
-					[[ uploads.length > 0? dashboardInstructions.hasUploads: dashboardInstructions.noUploads]]
+			<!-- To be displayed when PhotoEdit has been clicked -->
+			<div ng-show="editClicked">
+				<div style="height: 37em; padding: 3em;" class="valign-wrapper">
+					<div class="center valign tooltipped" data-position="bottom" data-delay="50" data-tooltip="[[amsterdam.file_name]]" id="editedMainDisplay" style="background-image: url([[amsterdam.upload]]); background-size: contain; background-repeat: no-repeat; height: 100%; width: 100%; margin: 1em; background-position: center;">
+					</div>
 				</div>
 			</div>
 		</div>
@@ -80,13 +96,13 @@
 					</a>
 					<ul>
 						<li>
-							<a class="btn-floating btn-large btn-flat waves-effect waves-light red" id="delete_button" ng-click="deletePhoto()"><i class="fa fa-trash fa_rounded_buttons"></i></a>
+							<a class="btn-floating btn-large btn-flat waves-effect waves-light red tooltipped" data-position="bottom" data-delay="50" data-tooltip="Delete Photo" id="delete_button" ng-click="deletePhoto()"><i class="fa fa-trash fa_rounded_buttons"></i></a>
 						</li>
 						<li>
-							<span class="btn-floating btn-large btn-flat waves-effect waves-light blue" id="share_button" ng-click="shareViaFacebook()"><i class="fa fa-share fa_rounded_buttons"></i></span>
+							<span class="btn-floating btn-large btn-flat waves-effect waves-light blue tooltipped" data-position="bottom" data-delay="50" data-tooltip="Share Photo" id="share_button" ng-click="shareViaFacebook()"><i class="fa fa-share fa_rounded_buttons"></i></span>
 						</li>
 						<li>
-							<a class="btn-floating btn-large btn-flat waves-effect waves-light teal" id="save_button" ng-click="saveEdits()"><i class="fa fa-floppy-o fa_rounded_buttons"></i></a>
+							<a class="btn-floating btn-large btn-flat waves-effect waves-light teal tooltipped" data-position="bottom" data-delay="50" data-tooltip="Save Photo" id="save_button" ng-click="saveEdits()"><i class="fa fa-floppy-o fa_rounded_buttons"></i></a>
 						</li>
 					</ul>
 				</div>
@@ -121,6 +137,11 @@
 		</div>
 	</div>
 </div>
+<script>
+  $(document).ready(function(){
+    $('.tooltipped').tooltip({delay: 50});
+  });
+</script>
 <!-- <div class="row"> -->
 	<!-- <div class="col s12" style="background-color: #efefef; min-height: 42em;">
 		<div class="row">

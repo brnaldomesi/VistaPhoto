@@ -31,6 +31,16 @@ vistagrid.factory('PhotoService', ['$resource',
 				create: {
 					method: 'POST'
 				}
+			}),
+			PhotoEdit: $resource('/api/edit/:edit_id/', {edit_id: '@edit_id'}, {
+				getAll: {
+					method: 'GET',
+					isArray: true
+				},
+				getOne: {
+					method: 'GET',
+					isArray: false
+				}
 			})
 		}
 }]);
