@@ -15,8 +15,7 @@ def index(request):
 
 @api_view(['GET'])
 def is_logged_in(request):
-	"""
-	Method view to check if request is coming from a user who is logged in.
+	"""Method view to check if request is coming from a user who is logged in.
 
 	This view checks whether the current user is logged in through a Django
 	backends authentication system.	Return logged in status, user's first, last
@@ -25,14 +24,21 @@ def is_logged_in(request):
 	"""
 	if request.method == 'GET':
 		if request.user.is_authenticated():
-			fb_object = SocialAuthUsersocialauth.objects.get(user=request.user)
-			return Response(
-				{
-					'status': 'isLoggedIn',
-					'username': request.user.first_name + ' ' + request.user.last_name,
-					'uid': fb_object.uid
-				}, status=status.HTTP_200_OK
-			)
+			try:
+				fbObject = SocialAuthUsersocialauth.objects.get(user=request.user)
+				return Response(
+					{
+						'status': 'isLoggedIn',
+						'username': request.user.first_name + ' ' + request.user.last_name,
+						'uid': fbObject.uid
+					}, status=status.HTTP_200_OK
+				)
+			except SocialAuthUsersocialauth.DoesNotExist:
+				return Response(
+					{
+						'status': 'authenticated via Django default auth'
+					}, status=status.HTTP_200_OK
+				)
 		return Response(
 			{
 				'status': 'notLoggedIn'

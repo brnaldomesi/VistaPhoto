@@ -10,8 +10,8 @@ from rest_framework.response import Response
 
 from faker import Factory
 
-from .serializers import PhotoSerializer, EffectSerializer
-from .models import Photo, Effects, FILTERS
+from .serializers import PhotoSerializer, EffectSerializer, PhotoEditSerializer
+from .models import Photo, Effects, FILTERS, PhotoEdit
 from .permissions import IsOwner
 
 
@@ -103,13 +103,18 @@ class PhotoViewSet(viewsets.ModelViewSet):
 
 	def update(self, request, pk):
 		"""Handle application of effects/filters on images when user clicks."""
+		# import ipdb; ipdb.set_trace()
 		try:
 			photo = Photo.objects.get(pk=pk)
+			photo_edit = PhotoEdit(photo=photo)
+			file_photo = open(photo.path.url[1:], 'rb')
+			photo_edit.upload.save(photo.get_file_name(), File(file_photo), save=True)
+			photo_edit.save()
 			# apply request if it has been requested
 			effect = request.data.get('filter_effects')
 			if effect:
-				photo.use_effect(effect)
-				photo.save()
+				photo.use_effect(effect, photo_edit)
+				# photo.save()
 				return Response(
 					{
 						'status': 'Photo Updated',
@@ -148,3 +153,10 @@ class PhotoViewSet(viewsets.ModelViewSet):
 				'detail': 'Not found.'
 			}, status=status.HTTP_404_NOT_FOUND
 		)
+
+
+class PhotoEditViewSet(viewsets.ModelViewSet):
+	"""Viewset to handle CRUD requests to '/api/edit/'.
+	"""
+	queryset = PhotoEdit.objects.all()
+	serializer_class = PhotoEditSerializer

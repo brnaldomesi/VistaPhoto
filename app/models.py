@@ -25,17 +25,17 @@ class Photo(models.Model):
 	"""Photo ORM model.
 	"""
 	photo_id = models.AutoField(primary_key=True)
-	path = models.ImageField()
+	path = models.ImageField(upload_to='photo/')
 	owner = models.ForeignKey(User, on_delete=models.CASCADE)
 
-	def use_effect(self, effect):
+	def use_effect(self, effect, photo_edit):
 		"""Modifies an image with the specified effect.
 		"""
 		if effect in FILTERS:
-			photo = Image.open(self.path)
+			photo = Image.open(photo_edit.upload)
 			photo = photo.filter(FILTERS.get(effect))
 
-			photo.save(self.path.url[1:])
+			photo.save(photo_edit.upload.url[1:])
 
 	def get_file_name(self):
 		"""Returns the name of the file that this model is associated with.
@@ -46,6 +46,19 @@ class Photo(models.Model):
 		"""Customize representation of this model's instance.
 		"""
 		return '{0}'.format(self.path.name[2:])
+
+
+# def photo_edit_directory_path(instance, filename):
+# 	"""Specify folder where Photo edits will be persisted."""
+# 	return '/photo_edits/'
+
+
+class PhotoEdit(models.Model):
+	"""Associate edits with a Photo.
+	"""
+	photo_edit_id = models.AutoField(primary_key=True)
+	photo = models.ForeignKey(Photo)
+	upload = models.ImageField(upload_to='edits/')
 
 
 def effects_file_name(instance, filename):
