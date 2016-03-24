@@ -1,15 +1,15 @@
 <div class="row" id="main_dashboard_div">
 	<!-- Header -->
 	<div class="navbar-fixed">
-		<nav class="blue-grey lighten-3">
-			<div class="nav-wrapper blue-grey lighten-3">
-				<a href="/#/" id="header_logo" class="grey-text text-darken-3">Vistagrid</a>
+		<nav class="flat_ui_last_blue">
+			<div class="nav-wrapper flat_ui_last_blue">
+				<a href="/#/" id="header_logo" class="flat_ui_greyish">Vistagrid</a>
 				<ul class="right hide-on-med-and-down">
 					<li><div id="user_profile_picture_div" style="background-image: url([[profile_picture]]);"></div></li>
 					<!-- Dropdown Trigger -->
 					<li>
-						<a class="dropdown-button" href="#!" data-activates="dropdown1">[[ username ]]<i class="material-icons right">arrow_drop_down</i></a><ul id="dropdown1" class="dropdown-content" style="width: 143px; position: absolute; top: 0px; left: 589.594px; opacity: 1; display: none;">
-							<li><a href="[[ logout_url ]]" class="grey-text text-darken-3" ng-click="logout()">Logout</a></li>
+						<a class="dropdown-button" href="#!" data-activates="dropdown1" data-beloworigin="true">[[ username ]]<i class="material-icons right">arrow_drop_down</i></a><ul id="dropdown1" class="dropdown-content" style="width: 143px; position: absolute; top: 0px; left: 589.594px; opacity: 1; display: none;">
+							<li><a href="[[ logout_url ]]" class="flat_ui_last_blue_text" ng-click="logout()">Logout</a></li>
 					</ul></li>
 				</ul>
 			</div>
@@ -142,57 +142,3 @@
     $('.tooltipped').tooltip({delay: 50});
   });
 </script>
-<!-- <div class="row"> -->
-	<!-- <div class="col s12" style="background-color: #efefef; min-height: 42em;">
-		<div class="row">
-			<div class="center">
-				<div class="col s2">
-					<div class="row" style="height: 35em; overflow: scroll;">
-						<div class="card" ng-repeat="upload in uploads" style="border: solid #616161; border-width: thin; border-radius: 5px;">
-							<div class="card-image" style="height: 8em;">
-								<img ng-src="[[upload.path]]" ng-click="uploadClicked(upload.photo_id, upload.file_url)" style="max-width: 100%; max-height: 100%;">
-							</div>
-							<div class="card-content">
-								<p class="upload_file_name">[[upload.file_name]]</p>
-							</div>
-						</div>
-					</div>
-					<div class="row">
-						<div class="center">
-							<a class="waves-effect waves-light btn" id="upload_button" ngf-select="uploadNewPhoto($file, $invalidFiles)" accept="image/*"><i id="upload_icon" class="fa fa-upload"></i>Upload</a>
-						</div>
-					</div>
-				</div>
-				<div class="col s10">
-					<div class="row right" id="controls_div" ng-show="showMain">
-						<span class="btn-floating btn-large btn-flat waves-effect waves-light" id="share_button" ng-click="shareViaFacebook()"><i class="fa fa-share facebook_blue_icon"></i></span>
-						<a class="btn-floating btn-large btn-flat waves-effect waves-light" id="save_button" ng-click="saveEdits()"><i class="fa fa-floppy-o facebook_blue_icon"></i></a>
-						<a class="btn-floating btn-large btn-flat waves-effect waves-light" id="delete_button" ng-click="deletePhoto()"><i class="fa fa-trash facebook_blue_icon"></i></a>
-					</div>
-					<div class="row">
-						<div class="col s12" ng-show="!showMain" style="height: 26em;">
-							<p class="frederika_placeholder">[Vistagrid]</p>
-						</div>
-						<div ng-show="showMain" class="card" style="border: solid #616161; border-width: thin; border-radius: 5px; height: 35em;">
-							<div class="card-image" style="max-height: 24em; height: 24em; padding: 1em 21em;">
-								<img ng-src="[[clickedPhoto.path]]" style="height: 80%; max-width: 100%;">
-							</div>
-							<div class="card-content">
-								<div>
-									<div ng-repeat="thumbnail in thumbnails" class="col s2">
-										<img ng-src="[[ thumbnail.path ]]" ng-click="effectPreview(thumbnail.effect_id)" class="effects_thumbnail"/>
-										<p class="effect_name_paragraph">[[ thumbnail.effect_name ]]</p>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="row">
-						<div ng-show="!showMain" class="frederika_dash_instructions" style="height: 4em; margin: 1em; border-radius: 5px; width: auto; overflow-x: scroll; overflow-y: hidden; white-space: nowrap; padding-right: 1em; padding-left: 1em;">
-							[[ uploads.length > 0 ? dashboardInstructions.hasUploads : dashboardInstructions.noUploads ]]
-						</div>
-					</div>
-			</div>
-		</div>
-	</div> -->
-<!-- </div> -->

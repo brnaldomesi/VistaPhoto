@@ -158,5 +158,5 @@ class PhotoViewSet(viewsets.ModelViewSet):
 class PhotoEditViewSet(viewsets.ModelViewSet):
 	"""Viewset to handle CRUD requests to '/api/edit/'.
 	"""
-	queryset = PhotoEdit.objects.all()
+	queryset = PhotoEdit.objects.all().order_by('-photo_edit_id')
 	serializer_class = PhotoEditSerializer
