@@ -1,10 +1,13 @@
 from random import random
+
+from django.core.urlresolvers import reverse
+
 from .test_base import TestBaseClass
 from app.models import FILTERS, Photo
 
 
 class TestPhotoAPIRoute(TestBaseClass):
-	"""Test the '/api/photos/' url."""
+	"""Test the '/api/photo/' url."""
 
 	def get_random_filter(self):
 		"""Return a random filter effect to use on photo."""
@@ -13,8 +16,8 @@ class TestPhotoAPIRoute(TestBaseClass):
 		return filters[rand_index]
 
 	def test_successful_upload(self):
-		"""Test successful POST request to '/api/photos/' url."""
-		url = '/api/photos/'
+		"""Test successful POST request to '/api/photo/' url."""
+		url = reverse('photo-list')
 		# authenticate the user
 		self.login_user()
 		# attempt upload
@@ -30,8 +33,8 @@ class TestPhotoAPIRoute(TestBaseClass):
 		)
 
 	def test_unauthenticated_upload(self):
-		"""Test unauthenticated POST request to '/api/photos/' url."""
-		url = '/api/photos/'
+		"""Test unauthenticated POST request to '/api/photo/' url."""
+		url = reverse('photo-list')
 		# attempt upload
 		data = {
 			'path': self.uploadable_image(),
@@ -45,11 +48,11 @@ class TestPhotoAPIRoute(TestBaseClass):
 		)
 
 	def test_upload_no_photo_selected(self):
-		"""Test authenticated POST request to '/api/photos/' url.
+		"""Test authenticated POST request to '/api/photo/' url.
 
 		Test this when no upload photo has been specified.
 		"""
-		url = '/api/photos/'
+		url = reverse('photo-list')
 		# authenticate the user
 		self.login_user()
 		# attempt upload
@@ -64,11 +67,11 @@ class TestPhotoAPIRoute(TestBaseClass):
 		)
 
 	def test_upload_no_effect_specified(self):
-		"""Test authenticated POST request to '/api/photos/' url.
+		"""Test authenticated POST request to '/api/photo/' url.
 
 		Test this when no effect has been specified.
 		"""
-		url = '/api/photos/'
+		url = reverse('photo-list')
 		# authenticate the user
 		self.login_user()
 		# attempt upload
@@ -84,7 +87,7 @@ class TestPhotoAPIRoute(TestBaseClass):
 
 	def test_delete_upload(self):
 		"""Test successful DELETE to '/api/photos/'."""
-		url = '/api/photos/'
+		url = reverse('photo-list')
 		self.login_user()
 		data = {
 			'path': self.uploadable_image(),

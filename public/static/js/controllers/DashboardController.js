@@ -69,6 +69,7 @@ vistagrid.controller('DashboardController',
 
 				}
 			);
+
 			data = {
 				path: path
 			};
@@ -87,7 +88,7 @@ vistagrid.controller('DashboardController',
 			$scope.uploadInProgress = true;
 			if (file) {
 				var data = {
-					url: '/api/photos/',
+					url: '/api/photo/',
 					data: {
 						path: file,
 						filter_effects: 'BLUR'
@@ -112,7 +113,7 @@ vistagrid.controller('DashboardController',
 
 		$scope.effectPreview = function (effectID) {
 			var data = {
-				effect_id: effectID
+				preview_id: effectID
 			}
 			PhotoService.Thumbnails.getOne(data).$promise.then(
 				function (response) {
@@ -125,7 +126,8 @@ vistagrid.controller('DashboardController',
 		};
 
 		$scope.saveEdits = function () {
-			if ($scope.clickedPhoto.effect_name) {
+			console.log($scope.clickedPhoto);
+			if ($scope.clickedPhoto.preview_name) {
 				swal(
 					{
 						title: "Are you sure?",
@@ -137,7 +139,7 @@ vistagrid.controller('DashboardController',
 						closeOnConfirm: true
 					},
 					function () {
-						effect_name = $scope.clickedPhoto.effect_name
+						effect_name = $scope.clickedPhoto.preview_name
 						var data = {
 							photo_id: clickedPhotoID,
 							filter_effects: effect_name

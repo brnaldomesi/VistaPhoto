@@ -21,6 +21,14 @@ FILTERS = {
 }
 
 
+# To be used in the Preview model's attribute of type ImageField
+def preview_file_name(instance, filename):
+	"""Return upload path to be used in path attribute of Preview model.
+	"""
+	filetime = instance.file_name + instance.preview_name
+	return 'preview/{0}'.format(filetime + '.jpg')
+
+
 class Photo(models.Model):
 	"""Photo ORM model.
 	"""
@@ -28,7 +36,8 @@ class Photo(models.Model):
 	path = models.ImageField(upload_to='photo/')
 	owner = models.ForeignKey(User, on_delete=models.CASCADE)
 
-	def use_effect(self, effect, photo_edit):
+	@staticmethod
+	def use_effect(effect, photo_edit):
 		"""Modifies an image with the specified effect.
 		"""
 		if effect in FILTERS:
@@ -40,7 +49,7 @@ class Photo(models.Model):
 	def get_file_name(self):
 		"""Returns the name of the file that this model is associated with.
 		"""
-		return self.path.name[2:]
+		return self.path.name[6:]
 
 	def __str__(self):
 		"""Customize representation of this model's instance.
@@ -48,16 +57,12 @@ class Photo(models.Model):
 		return '{0}'.format(self.path.name[2:])
 
 
-# def photo_edit_directory_path(instance, filename):
-# 	"""Specify folder where Photo edits will be persisted."""
-# 	return '/photo_edits/'
-
-
 class PhotoEdit(models.Model):
-	"""Associate edits with a Photo.
+	"""Associate edits on Photo with this model.
 	"""
 	photo_edit_id = models.AutoField(primary_key=True)
-	photo = models.ForeignKey(Photo)
+	effect_name = models.CharField(max_length=20)
+	photo = models.ForeignKey(Photo, on_delete=models.CASCADE)
 	upload = models.ImageField(upload_to='edits/')
 
 	def get_file_name(self):
@@ -65,30 +70,27 @@ class PhotoEdit(models.Model):
 		"""
 		return self.upload.name[6:]
 
+	def __str__(self):
+		"""Customize representation of this model's instance.
+		"""
+		return '{0}'.format(self.effect_name)
 
-def effects_file_name(instance, filename):
-	"""Return upload path to be used in path attribute of Effects model.
+
+class Preview(models.Model):
+	"""Preview ORM to generate previews of effects on Photo.
 	"""
-	filetime = instance.file_name + instance.effect_name
-	return 'effects/{0}'.format(filetime + '.jpg')
-
-
-# Create your models here.
-class Effects(models.Model):
-	"""Photo edit effects preview ORM.
-	"""
-	effect_id = models.AutoField(primary_key=True)
-	effect_name = models.CharField(max_length=20)
+	preview_id = models.AutoField(primary_key=True)
+	preview_name = models.CharField(max_length=20)
 	file_name = models.CharField(max_length=50)
-	path = models.ImageField(upload_to=effects_file_name)
+	path = models.ImageField(upload_to=preview_file_name)
 
 	def use_effect(self):
 		"""Apply the effect that corresponds to current value of 'self.effect_name'
 		in the FILTERS dictionary.
 		"""
-		if self.effect_name in FILTERS:
+		if self.preview_name in FILTERS:
 			photo = Image.open(self.path)
-			preview = photo.filter(FILTERS.get(self.effect_name))
+			preview = photo.filter(FILTERS.get(self.preview_name))
 			preview.save(self.path.url[1:])
 
 	def save(self, *args, **kwargs):
@@ -96,17 +98,16 @@ class Effects(models.Model):
 
 		This method is called after save because the 'path' attribute will refer
 		to 'MEDIA_ROOT' until the model instance is saved. After saving, it refers
-		to 'MEDIA_ROOT/effects/' (which is where we want effects to be uploaded
+		to 'MEDIA_ROOT/preview/' (which is where we want effects to be uploaded
 		when applying effect previews).
 		"""
-		super(Effects, self).save(*args, **kwargs)
-
+		super(Preview, self).save(*args, **kwargs)
 		self.use_effect()
 
 	def __str__(self):
 		"""Customize representation of this model's instance.
 		"""
-		return '{0}{1}'.format(self.file_name, self.effect_name)
+		return '{0}{1}'.format(self.file_name, self.preview_name)
 
 
 class SocialAuthUsersocialauth(models.Model):
@@ -131,7 +132,7 @@ class SocialAuthUsersocialauth(models.Model):
 		return '{0}{1}'.format(self.user.username, self.provider)
 
 
-@receiver(post_delete, sender=Effects)
+@receiver(post_delete, sender=Preview)
 def file_cleanup(sender, **kwargs):
 	"""This method deletes associated photo files on disk every time 'delete()'
 	is called on a model instance (or on a queryset of Effect objects).

@@ -6,8 +6,8 @@ from . import viewsets
 from . import views
 
 router = routers.DefaultRouter()
-router.register(r'photos', viewsets.PhotoViewSet, 'photos')
-router.register(r'effects', viewsets.EffectViewSet, 'effects')
+router.register(r'photo', viewsets.PhotoViewSet, 'photo')
+router.register(r'preview', viewsets.PreviewViewSet, 'preview')
 router.register(r'edit', viewsets.PhotoEditViewSet, 'edit')
 
 urlpatterns = [
