@@ -1,5 +1,5 @@
-vistagrid.controller('LoginController', ['$scope', '$cookies', '$location',
- function($scope, $cookies, $location){
+vistagrid.controller('LoginController', ['$scope', '$cookies', '$location', 'AuthService',
+ function($scope, $cookies, $location, AuthService){
 	$(".animation").typed({
 		strings: ["Upload", "Access", "Edit", "Share"],
 		typeSpeed: 70,
@@ -9,7 +9,13 @@ vistagrid.controller('LoginController', ['$scope', '$cookies', '$location',
 	 });
 	 $('.slider').slider({height: 120, indicators: false, interval : 2000});
 
-     if ($cookies.get('isLoggedIn')) {
-        $location.path('/dashboard');
-     }
+     // Redirect to dashboard if user is logged in
+     AuthService.loginStatus.get().$promise.then(
+        function (response) {
+            $location.path('/dashboard');
+        },
+        function (error) {
+
+        }
+    );
 }]);
