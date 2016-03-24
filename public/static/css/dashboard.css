@@ -81,7 +81,7 @@ div.upload_button_div {
 }
 
 #upload_button {
-	background-color: #424242;
+	background-color: #e74c3c;
 	padding-right: 2em;
 	text-transform: capitalize;
 }
@@ -171,6 +171,7 @@ div.upload_button_div {
 	background-size: contain;
 	background-repeat: no-repeat;
 	background-position: center;
+	margin-top: 0.5em;
 }
 
 #logout_button {
@@ -182,24 +183,24 @@ div.upload_button_div {
 
 /* Customize loader to match our theme */
 .progress {
-	background-color: #424242;
+	background-color: #2980b9;
 }
 
 .progress .indeterminate{
-	background-color: #b0bec5;
+	background-color: #ecf0f1;
 }
 
 #placeholder_logo {
 	font-family: 'Lobster', cursive;
 	font-size: 13em;
 	margin: auto;
-	color: #eceff1;
+	color: #3498d8;
 }
 
 #placeholder_instructions {
 	margin: auto;
 	font-family: 'Lobster', cursive;
-	color: #eceff1;
+	color: #3498d8;
 	font-size: 3em;
 }
 
@@ -219,16 +220,35 @@ div.upload_button_div {
 
 /* Change the tab colours to suit app's theme colours */
 .tabs .tab a {
-	color: #424242;
+	color: #3498d8;
 	text-transform: capitalize;
 }
 
 /* Change selected tab indicator colour */
 .tabs .indicator {
-	background-color: #424242;
+	background-color: #3498d8;
 }
 
 /* Change hover colour */
 .tabs .tab a:hover {
-	color: #b0bec5;
+	color: #2c3e50;
+}
+
+
+/* Inspired by Flat UI palette
+https://color.adobe.com/Flat-UI-color-theme-2469224/ */
+.flat_ui_last_blue {
+	background-color: #2980b9;
+}
+
+.dropdown-content li > a, .dropdown-content li > span {
+	color: #2980b9
+}
+
+.flat_ui_greyish {
+	color: #ecf0f1;
+}
+
+nav ul a {
+	color: #ecf0f1;
 }
