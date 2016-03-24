@@ -1,27 +1,29 @@
 import os
 
 from django.conf import settings
+from django.core.urlresolvers import reverse
 from .test_base import TestBaseClass
-from app.models import Effects
+from app.models import Preview
 
 
 class TestPhotoEffects(TestBaseClass):
-	"""Test the '/api/effects/' url."""
+	"""Test the '/api/preview/' url."""
 
 	def tearDown(self):
 		"""Delete all Effects objects.
 
 		(To clean up associated effect files on disk).
 		"""
-		all_effects = Effects.objects.all()
-		all_effects.delete()
+		all_previews = Preview.objects.all()
+		all_previews.delete()
 
 	def test_successful_post(self):
-		"""Test successful POST on '/api/effects/' url."""
-		url = '/api/effects/'
+		"""Test successful POST on '/api/preview/' url."""
+		url = reverse('preview-list')
 		self.login_user()
 		data = {
-			'path': self.uploadable_image()
+			'path': self.uploadable_image(),
+			'preview_name': 'BLUR'
 		}
 		response = self.client.post(url, data=data)
 		self.assertEqual(response.status_code, 201)
@@ -29,8 +31,8 @@ class TestPhotoEffects(TestBaseClass):
 		self.assertTrue('Success' in response.data.get('status'))
 
 	def test_successful_get(self):
-		"""Test successful GET on '/api/effects/' url."""
-		url = '/api/effects/'
+		"""Test successful GET on '/api/preview/' url."""
+		url = reverse('preview-list')
 		self.login_user()
 		data = {
 			'path': self.uploadable_image()
@@ -41,8 +43,8 @@ class TestPhotoEffects(TestBaseClass):
 		self.assertEqual(response.status_text, 'OK')
 
 	def test_successful_delete(self):
-		"""TesT successful DELETE on '/api/effects/' url."""
-		url = '/api/effects/'
+		"""TesT successful DELETE on '/api/preview/' url."""
+		url = reverse('preview-list')
 		self.login_user()
 		data = {
 			'path': self.uploadable_image()
@@ -50,9 +52,9 @@ class TestPhotoEffects(TestBaseClass):
 		self.client.post(url, data=data)
 		# retrieve the effect's id
 		response = self.client.get(url)
-		effect_id = response.data[0].get('effect_id')
+		effect_id = response.data[0].get('preview_id')
 		# get the file name from an effect object's path attribute
-		effect_obj = Effects.objects.get(pk=effect_id)
+		effect_obj = Preview.objects.get(pk=effect_id)
 		filename = settings.BASE_DIR + effect_obj.path.url
 		# send a delete request
 		url += str(effect_id) + '/'

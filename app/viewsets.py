@@ -10,15 +10,15 @@ from rest_framework.response import Response
 
 from faker import Factory
 
-from .serializers import PhotoSerializer, EffectSerializer, PhotoEditSerializer
-from .models import Photo, Effects, FILTERS, PhotoEdit
+from .serializers import PhotoSerializer, PreviewSerializer, PhotoEditSerializer
+from .models import Photo, Preview, FILTERS, PhotoEdit
 from .permissions import IsOwner
 
 
-class EffectViewSet(viewsets.ModelViewSet):
-	"""Handle CRUD requests to '/effects/' url."""
-	queryset = Effects.objects.all()
-	serializer_class = EffectSerializer
+class PreviewViewSet(viewsets.ModelViewSet):
+	"""Handle CRUD requests to '/api/preview/' url."""
+	queryset = Preview.objects.all()
+	serializer_class = PreviewSerializer
 	permission_classes = (permissions.IsAuthenticated, )
 
 	def create(self, request):
@@ -27,6 +27,8 @@ class EffectViewSet(viewsets.ModelViewSet):
 		data = {}
 		fake = Factory.create()
 		filename = fake.word()
+
+		# import ipdb; ipdb.set_trace()
 
 		if isinstance(upload, InMemoryUploadedFile):
 			data['path'] = upload
@@ -38,16 +40,16 @@ class EffectViewSet(viewsets.ModelViewSet):
 		serializer = self.serializer_class(data=data)
 
 		if serializer.is_valid():
-			# delete all pre_existing effects objects
+			# delete all pre_existing preview objects
 			self.queryset.delete()
 
 			for key in FILTERS:
-				effects = Effects(
+				preview = Preview(
 					path=serializer.validated_data.get('path'),
-					effect_name=key,
+					preview_name=key,
 					file_name=filename
 				)
-				effects.save()
+				preview.save()
 			return Response(
 				{
 					'status': 'Success',
@@ -102,11 +104,12 @@ class PhotoViewSet(viewsets.ModelViewSet):
 		return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 	def update(self, request, pk):
-		"""Handle application of effects/filters on images when user clicks."""
+		"""Handle application of preview/filters on images when user clicks."""
 		# import ipdb; ipdb.set_trace()
 		try:
 			photo = Photo.objects.get(pk=pk)
-			photo_edit = PhotoEdit(photo=photo)
+			photo_edit = PhotoEdit(
+				photo=photo, effect_name=request.data.get('filter_effects'))
 			file_photo = open(photo.path.url[1:], 'rb')
 			photo_edit.upload.save(photo.get_file_name(), File(file_photo), save=True)
 			photo_edit.save()
@@ -160,3 +163,4 @@ class PhotoEditViewSet(viewsets.ModelViewSet):
 	"""
 	queryset = PhotoEdit.objects.all().order_by('-photo_edit_id')
 	serializer_class = PhotoEditSerializer
+	permission_classes = (permissions.IsAuthenticated, )

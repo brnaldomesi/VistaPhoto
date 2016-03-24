@@ -1,15 +1,15 @@
 from rest_framework import serializers
 
-from .models import Photo, Effects, PhotoEdit
+from .models import Photo, Preview, PhotoEdit
 
 
-class EffectSerializer(serializers.ModelSerializer):
+class PreviewSerializer(serializers.ModelSerializer):
 	"""Serialize the effects model.
 	"""
 	class Meta:
-		model = Effects
-		fields = ('effect_id', 'effect_name', 'path')
-		read_only_fields = ('effect_name',)
+		model = Preview
+		fields = ('preview_id', 'preview_name', 'path')
+		read_only_fields = ('preview_name',)
 
 
 class PhotoSerializer(serializers.ModelSerializer):
@@ -39,4 +39,4 @@ class PhotoEditSerializer(serializers.ModelSerializer):
 
 	class Meta:
 		model = PhotoEdit
-		fields = ('photo', 'upload', 'photo_edit_id', 'file_name',)
+		fields = ('photo', 'upload', 'photo_edit_id', 'file_name', 'effect_name')

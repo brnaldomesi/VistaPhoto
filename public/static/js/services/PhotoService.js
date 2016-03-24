@@ -1,7 +1,7 @@
 vistagrid.factory('PhotoService', ['$resource',
 	function ($resource) {
 		return {
-			Uploads: $resource('/api/photos/:photo_id/', {photo_id: '@photo_id'}, {
+			Uploads: $resource('/api/photo/:photo_id/', {photo_id: '@photo_id'}, {
 				getAll: {
 					method: 'GET',
 					isArray: true
@@ -20,7 +20,7 @@ vistagrid.factory('PhotoService', ['$resource',
 					method: 'DELETE'
 				}
 			}),
-			Thumbnails: $resource('/api/effects/:effect_id/', {effect_id: '@effect_id'}, {
+			Thumbnails: $resource('/api/preview/:preview_id/', {preview_id: '@preview_id'}, {
 				getAll: {
 					method: 'GET',
 					isArray: true

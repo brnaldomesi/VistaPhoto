@@ -80,7 +80,7 @@
 			<!-- To be displayed when PhotoEdit has been clicked -->
 			<div ng-show="editClicked">
 				<div style="height: 37em; padding: 3em;" class="valign-wrapper">
-					<div class="center valign tooltipped" data-position="bottom" data-delay="50" data-tooltip="[[amsterdam.file_name]]" id="editedMainDisplay" style="background-image: url([[amsterdam.upload]]); background-size: contain; background-repeat: no-repeat; height: 100%; width: 100%; margin: 1em; background-position: center;">
+					<div class="center valign tooltipped" data-position="bottom" data-delay="50" data-tooltip="[[amsterdam.effect_name]] applied." id="editedMainDisplay" style="background-image: url([[amsterdam.upload]]); background-size: contain; background-repeat: no-repeat; height: 100%; width: 100%; margin: 1em; background-position: center;">
 					</div>
 				</div>
 			</div>
@@ -119,9 +119,9 @@
 				<!-- Width more than 100% triggers horizontal scroll in HTML-->
 				<div style="width: 150%; height: 100%" ng-hide="loadingThumbnails">
 					<div style="display: inline-block;" ng-repeat="thumbnail in thumbnails">
-						<div class="effect_preview_span"  style="background-image: url([[thumbnail.path]]);" ng-click="effectPreview(thumbnail.effect_id)" >
+						<div class="effect_preview_span"  style="background-image: url([[thumbnail.path]]);" ng-click="effectPreview(thumbnail.preview_id)" >
 						</div>
-						<div class="effect_name">[[ thumbnail.effect_name ]]</div>
+						<div class="effect_name">[[ thumbnail.preview_name ]]</div>
 					</div>
 				</div>
 

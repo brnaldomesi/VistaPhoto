@@ -2,6 +2,7 @@ import os
 from django.test import TestCase, Client
 from django.contrib.auth.models import User
 from django.core.files.images import ImageFile
+from django.core.urlresolvers import reverse
 from PIL import Image
 from faker import Factory
 
@@ -33,7 +34,7 @@ class TestBaseClass(TestCase):
 
 	def login_user(self):
 		"""Authenticate 'self.user'."""
-		url = '/api-auth/login/'
+		url = reverse('rest_framework:login')
 		data = {
 			'username': self.username,
 			'password': self.password
@@ -43,7 +44,8 @@ class TestBaseClass(TestCase):
 	def logout_user(self):
 		"""Send get request to '/logout/' url to logout authenticated users.
 		"""
-		self.client.get('/logout/')
+		url = reverse('rest_framework:logout')
+		self.client.get(url)
 
 	def uploadable_image(self):
 		"""Create an uploadable object from the 'test.jpg' file on disk."""
