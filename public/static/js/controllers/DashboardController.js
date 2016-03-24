@@ -54,6 +54,7 @@ vistagrid.controller('DashboardController',
 		$scope.uploadClicked = function (photo_id, path) {
 			$scope.loadingThumbnails = true;
 			$scope.uploadPhotoClicked = true;
+			$scope.editClicked = false;
 			var data = {
 				photo_id: photo_id
 			};
@@ -205,5 +206,33 @@ vistagrid.controller('DashboardController',
 		$scope.logout = function () {
 			$cookies.remove('isLoggedIn');
 			$rootScope.showLogoutButton = false;
+		};
+
+		$scope.getRecentEdits = function () {
+			PhotoService.PhotoEdit.getAll().$promise.then(
+				function (response) {
+					$scope.recentEdits = response;
+				},
+				function (error) {
+					console.log(error);
+				}
+			);
+		}
+
+		$scope.recentEditClicked = function (edit_id) {
+			var data = {
+				edit_id: edit_id
+			};
+
+			$scope.editClicked = true;
+			$scope.uploadPhotoClicked = false;
+			PhotoService.PhotoEdit.getOne(data).$promise.then(
+				function (response) {
+					$scope.amsterdam = response;
+				},
+				function (error) {
+					console.log(error);
+				}
+			);
 		};
 }]);
