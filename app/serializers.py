@@ -34,6 +34,9 @@ class PhotoSerializer(serializers.ModelSerializer):
 class PhotoEditSerializer(serializers.ModelSerializer):
 	"""Serialize the PhotoEdit model.
 	"""
+
+	file_name = serializers.CharField(source='get_file_name', read_only=True)
+
 	class Meta:
 		model = PhotoEdit
-		fields = ('photo', 'upload')
+		fields = ('photo', 'upload', 'photo_edit_id', 'file_name',)

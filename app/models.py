@@ -60,6 +60,11 @@ class PhotoEdit(models.Model):
 	photo = models.ForeignKey(Photo)
 	upload = models.ImageField(upload_to='edits/')
 
+	def get_file_name(self):
+		"""Returns the name of the file that this model is associated with.
+		"""
+		return self.upload.name[6:]
+
 
 def effects_file_name(instance, filename):
 	"""Return upload path to be used in path attribute of Effects model.
