@@ -252,3 +252,7 @@ https://color.adobe.com/Flat-UI-color-theme-2469224/ */
 nav ul a {
 	color: #ecf0f1;
 }
+
+.fixed-action-btn {
+	z-index: 0;
+}
