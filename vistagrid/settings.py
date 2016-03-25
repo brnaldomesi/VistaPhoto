@@ -27,9 +27,12 @@ SOCIAL_AUTH_FACEBOOK_SECRET = os.environ.get('SOCIAL_AUTH_FACEBOOK_SECRET')
 SOCIAL_AUTH_LOGIN_REDIRECT_URL = '/#/dashboard'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+# DEBUG = False
+# ALLOWED_HOSTS = ['*']
 
-ALLOWED_HOSTS = ['*']
+DEBUG = True
+ALLOWED_HOSTS = []
+
 
 
 # Application definition
@@ -156,7 +159,8 @@ STATICFILES_DIRS = (
 	os.path.join(BASE_DIR, 'public/static'),
 )
 
-STATIC_ROOT = 'staticfiles/'
+STATIC_ROOT = 'staticfiles'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'uploads')
+# MEDIA_ROOT = 'media'
 MEDIA_URL = '/uploads/'

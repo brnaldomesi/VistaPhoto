@@ -89,7 +89,7 @@ class Preview(models.Model):
 		in the FILTERS dictionary.
 		"""
 		if self.preview_name in FILTERS:
-			photo = Image.open(self.path)
+			photo = Image.open(self.path.url[1:])
 			preview = photo.filter(FILTERS.get(self.preview_name))
 			preview.save(self.path.url[1:])
 
