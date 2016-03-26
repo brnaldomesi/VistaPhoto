@@ -134,10 +134,32 @@ class SocialAuthUsersocialauth(models.Model):
 
 @receiver(post_delete, sender=Preview)
 def file_cleanup(sender, **kwargs):
-	"""This method deletes associated photo files on disk every time 'delete()'
-	is called on a model instance (or on a queryset of Effect objects).
+	"""This method deletes associated 'Preview' files on disk every time 'delete()'
+	is called on a model instance (or on a queryset of 'Preview' objects).
 	"""
 	instance = kwargs.get('instance')
 	filename = instance.path.url[1:]
 	if os.path.exists(filename):
-			os.remove(filename)
+		os.remove(filename)
+
+
+@receiver(post_delete, sender=Photo)
+def file_cleanup(sender, **kwargs):
+	"""This method deletes associated 'Photo' files on disk every time 'delete()'
+	is called on a model instance (or on a queryset of 'Photo' objects).
+	"""
+	instance = kwargs.get('instance')
+	filename = instance.path.url[1:]
+	if os.path.exists(filename):
+		os.remove(filename)
+
+
+@receiver(post_delete, sender=PhotoEdit)
+def file_cleanup(sender, **kwargs):
+	"""This method deletes associated 'PhotoEdit' files on disk every time 'delete()'
+	is called on a model instance (or on a queryset of 'PhotoEdit' objects).
+	"""
+	instance = kwargs.get('instance')
+	filename = instance.upload.url[1:]
+	if os.path.exists(filename):
+		os.remove(filename)
