@@ -28,29 +28,22 @@ class PreviewViewSet(viewsets.ModelViewSet):
 		"""
 		serializer = self.serializer_class(data=request.data)
 		if serializer.is_valid():
-			try:
-				photo = Photo.objects.get(pk=request.data.get('photo'))
-				file_photo = open(photo.path.url[1:], 'rb')
-				# delete all previous previews
-				self.queryset.delete()
+			photo = Photo.objects.get(pk=request.data.get('photo'))
+			file_photo = open(photo.path.url[1:], 'rb')
+			# delete all previous previews
+			self.queryset.delete()
 
-				for key in FILTERS:
-					preview = Preview(photo=photo, preview_name=key)
-					preview.path.save(
-						key + photo.get_file_name(), File(file_photo), save=True)
-					preview.save()
-				return Response(
-					{
-						'status': 'Success',
-						'message': 'Thumbnails created'
-					}, status=status.HTTP_201_CREATED
-				)
-			except Photo.DoesNotExist:
-				return Response(
-					{
-						'detail': 'Not found.'
-					}, status=status.HTTP_404_NOT_FOUND
-				)
+			for key in FILTERS:
+				preview = Preview(photo=photo, preview_name=key)
+				preview.path.save(
+					key + photo.get_file_name(), File(file_photo), save=True)
+				preview.save()
+			return Response(
+				{
+					'status': 'Success',
+					'message': 'Thumbnails created'
+				}, status=status.HTTP_201_CREATED
+			)
 		return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
@@ -102,14 +95,15 @@ class PhotoViewSet(viewsets.ModelViewSet):
 		"""Handle application of preview/filters on images when user clicks."""
 		try:
 			photo = Photo.objects.get(pk=pk)
-			photo_edit = PhotoEdit(
-				photo=photo, effect_name=request.data.get('filter_effects'))
-			file_photo = open(photo.path.url[1:], 'rb')
-			photo_edit.upload.save(photo.get_file_name(), File(file_photo), save=True)
-			photo_edit.save()
-			# apply request if it has been requested
 			effect = request.data.get('filter_effects')
 			if effect:
+				photo_edit = PhotoEdit(
+					photo=photo, effect_name=request.data.get('filter_effects'))
+				file_photo = open(photo.path.url[1:], 'rb')
+				photo_edit.upload.save(photo.get_file_name(), File(file_photo), save=True)
+				photo_edit.save()
+				# apply request if it has been requested
+
 				photo.use_effect(effect, photo_edit)
 				# photo.save()
 				return Response(
@@ -133,8 +127,8 @@ class PhotoViewSet(viewsets.ModelViewSet):
 
 	def destroy(self, request, pk):
 		"""Delete record from database as well as file photo on disk."""
-		photo = Photo.objects.get(pk=pk)
-		if photo:
+		try:
+			photo = Photo.objects.get(pk=pk)
 			filename = settings.BASE_DIR + photo.path.url
 			photo.delete()
 			if os.path.exists(filename):
@@ -145,11 +139,12 @@ class PhotoViewSet(viewsets.ModelViewSet):
 					'detail': 'Photo file not found.'
 				}, status=status.HTTP_404_NOT_FOUND
 			)
-		return Response(
-			{
-				'detail': 'Not found.'
-			}, status=status.HTTP_404_NOT_FOUND
-		)
+		except Photo.DoesNotExist:
+			return Response(
+				{
+					'detail': 'Not found.'
+				}, status=status.HTTP_404_NOT_FOUND
+			)
 
 
 class PhotoEditViewSet(viewsets.ModelViewSet):
