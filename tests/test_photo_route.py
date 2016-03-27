@@ -13,7 +13,7 @@ class TestPhotoAPIRoute(TestBaseClass):
 
 	def get_random_filter(self):
 		"""Return a random filter effect to use on photo."""
-		filters = FILTERS.keys()
+		filters = list(FILTERS)
 		rand_index = int(random() * len(filters))
 		return filters[rand_index]
 
