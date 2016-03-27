@@ -42,17 +42,41 @@ class TestPhotoEffects(TestBaseClass):
 		self.assertEqual(response.status_text, 'Created')
 		self.assertTrue('Success' in response.data.get('status'))
 
-	def test_successful_get(self):
-		"""Test successful GET on '/api/preview/' url."""
+	def test_unsuccessful_post_non_existent_fk(self):
+		"""Test a POST on '/api/preview' with an ID of a non-existent Photo"""
 		url = reverse('preview-list')
 		self.login_user()
 		data = {
-			'path': self.uploadable_image()
+			'photo': 3457
 		}
-		self.client.post(url, data=data)
+		response = self.client.post(url, data)
+		self.assertEqual(response.status_code, 400)
+		self.assertEqual(response.status_text, 'Bad Request')
+		self.assertTrue('Invalid pk' in response.data.get('photo')[0])
+
+	def test_successful_get(self):
+		"""Test successful GET on '/api/preview/' url."""
+		self.login_user()
+		# create a photo and get the photo (whose id is used as a fk)
+		photo_url = reverse('photo-list')
+		data = {
+			'path': self.uploadable_image(),
+			'filter_effects': 'BLUR'
+		}
+		self.client.post(photo_url, data=data)
+		response = self.client.get(photo_url)
+		photo_id = response.data[0].get('photo_id')
+		# use the photo
+		data = {
+			'photo': photo_id
+		}
+		url = reverse('preview-list')
+		response = self.client.post(url, data=data)
 		response = self.client.get(url)
 		self.assertEqual(response.status_code, 200)
 		self.assertEqual(response.status_text, 'OK')
+		# assert that 6 previews have been created
+		self.assertEqual(len(response.data), 6)
 
 	def test_successful_delete(self):
 		"""TesT successful DELETE on '/api/preview/' url."""
