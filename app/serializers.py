@@ -8,8 +8,8 @@ class PreviewSerializer(serializers.ModelSerializer):
 	"""
 	class Meta:
 		model = Preview
-		fields = ('preview_id', 'preview_name', 'path')
-		read_only_fields = ('preview_name',)
+		fields = ('preview_id', 'preview_name', 'path', 'photo')
+		read_only_fields = ('preview_name', 'path')
 
 
 class PhotoSerializer(serializers.ModelSerializer):

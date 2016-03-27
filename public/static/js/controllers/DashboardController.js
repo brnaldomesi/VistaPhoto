@@ -52,7 +52,7 @@ vistagrid.controller('DashboardController',
 			);
 		};
 
-		$scope.uploadClicked = function (photo_id, path) {
+		$scope.uploadClicked = function (photo_id) {
 			$scope.loadingThumbnails = true;
 			$scope.uploadPhotoClicked = true;
 			$scope.editClicked = false;
@@ -73,9 +73,9 @@ vistagrid.controller('DashboardController',
 			);
 
 			data = {
-				path: path
+				photo: photo_id
 			};
-			console.log(data);
+
 			PhotoService.Thumbnails.create(data).$promise.then(
 				function (response) {
 					refreshThumbnails();

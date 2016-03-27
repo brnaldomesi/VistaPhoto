@@ -22,45 +22,40 @@ class PreviewViewSet(viewsets.ModelViewSet):
 	permission_classes = (permissions.IsAuthenticated, )
 
 	def create(self, request):
-		"""Use specified effect on the uploaded photo."""
-		upload = request.data.get('path')
-		data = {}
-		fake = Factory.create()
-		filename = fake.word()
+		"""Handles the POST request to '/api/preview/'.
 
-		# import ipdb; ipdb.set_trace()
-
-		if isinstance(upload, InMemoryUploadedFile):
-			data['path'] = upload
-		elif isinstance(str(upload), str):
-			file_object = open(upload[1:])
-			django_file = File(file_object)
-			data['path'] = django_file
-
-		serializer = self.serializer_class(data=data)
-
+		Create a 'Preview' of 'Photo'. 'Photo' object is the only argument.
+		"""
+		serializer = self.serializer_class(data=request.data)
 		if serializer.is_valid():
-			# delete all pre_existing preview objects
-			self.queryset.delete()
+			try:
+				photo = Photo.objects.get(pk=request.data.get('photo'))
+				file_photo = open(photo.path.url[1:], 'rb')
+				# delete all previous previews
+				self.queryset.delete()
 
-			for key in FILTERS:
-				preview = Preview(
-					path=serializer.validated_data.get('path'),
-					preview_name=key,
-					file_name=filename
+				for key in FILTERS:
+					preview = Preview(photo=photo, preview_name=key)
+					preview.path.save(
+						key + photo.get_file_name(), File(file_photo), save=True)
+					preview.save()
+				return Response(
+					{
+						'status': 'Success',
+						'message': 'Thumbnails created'
+					}, status=status.HTTP_201_CREATED
 				)
-				preview.save()
-			return Response(
-				{
-					'status': 'Success',
-					'message': 'Thumbnails created'
-				}, status=status.HTTP_201_CREATED
-			)
+			except Photo.DoesNotExist:
+				return Response(
+					{
+						'detail': 'Not found.'
+					}, status=status.HTTP_404_NOT_FOUND
+				)
 		return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 class PhotoViewSet(viewsets.ModelViewSet):
-	"""Handle CRUD requests to '/photos/' url."""
+	"""Handle CRUD requests to '/api/photos/' url."""
 	queryset = Photo.objects.all().order_by('-photo_id')
 	serializer_class = PhotoSerializer
 	permission_classes = (permissions.IsAuthenticated, IsOwner)
@@ -105,7 +100,6 @@ class PhotoViewSet(viewsets.ModelViewSet):
 
 	def update(self, request, pk):
 		"""Handle application of preview/filters on images when user clicks."""
-		# import ipdb; ipdb.set_trace()
 		try:
 			photo = Photo.objects.get(pk=pk)
 			photo_edit = PhotoEdit(
