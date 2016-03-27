@@ -44,6 +44,7 @@ vistagrid.controller('DashboardController',
 			PhotoService.Thumbnails.getAll().$promise.then(
 				function (response) {
 					$scope.thumbnails = response;
+					console.log(response);
 				},
 				function (error) {
 
@@ -51,7 +52,7 @@ vistagrid.controller('DashboardController',
 			);
 		};
 
-		$scope.uploadClicked = function (photo_id, path) {
+		$scope.uploadClicked = function (photo_id) {
 			$scope.loadingThumbnails = true;
 			$scope.uploadPhotoClicked = true;
 			$scope.editClicked = false;
@@ -64,6 +65,7 @@ vistagrid.controller('DashboardController',
 				function (response) {
 					$scope.showMain = true;
 					$scope.clickedPhoto = response;
+					console.log(response);
 				},
 				function (error) {
 
@@ -71,8 +73,9 @@ vistagrid.controller('DashboardController',
 			);
 
 			data = {
-				path: path
+				photo: photo_id
 			};
+
 			PhotoService.Thumbnails.create(data).$promise.then(
 				function (response) {
 					refreshThumbnails();
@@ -210,7 +213,14 @@ vistagrid.controller('DashboardController',
 			$rootScope.showLogoutButton = false;
 		};
 
+		$scope.hideRecentEdits = function () {
+			$scope.editClicked = false;
+			$scope.uploadPhotoClicked = false;
+		};
+
 		$scope.getRecentEdits = function () {
+			$scope.editClicked = true;
+			$scope.uploadPhotoClicked = false;
 			PhotoService.PhotoEdit.getAll().$promise.then(
 				function (response) {
 					$scope.recentEdits = response;
@@ -231,6 +241,7 @@ vistagrid.controller('DashboardController',
 			PhotoService.PhotoEdit.getOne(data).$promise.then(
 				function (response) {
 					$scope.amsterdam = response;
+					console.log(response);
 				},
 				function (error) {
 					console.log(error);

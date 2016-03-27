@@ -21,14 +21,6 @@ FILTERS = {
 }
 
 
-# To be used in the Preview model's attribute of type ImageField
-def preview_file_name(instance, filename):
-	"""Return upload path to be used in path attribute of Preview model.
-	"""
-	filetime = instance.file_name + instance.preview_name
-	return 'preview/{0}'.format(filetime + '.jpg')
-
-
 class Photo(models.Model):
 	"""Photo ORM model.
 	"""
@@ -81,15 +73,15 @@ class Preview(models.Model):
 	"""
 	preview_id = models.AutoField(primary_key=True)
 	preview_name = models.CharField(max_length=20)
-	file_name = models.CharField(max_length=50)
-	path = models.ImageField(upload_to=preview_file_name)
+	path = models.ImageField(upload_to='preview/')
+	photo = models.ForeignKey(Photo, on_delete=models.CASCADE)
 
 	def use_effect(self):
 		"""Apply the effect that corresponds to current value of 'self.effect_name'
 		in the FILTERS dictionary.
 		"""
 		if self.preview_name in FILTERS:
-			photo = Image.open(self.path)
+			photo = Image.open(self.path.url[1:])
 			preview = photo.filter(FILTERS.get(self.preview_name))
 			preview.save(self.path.url[1:])
 
@@ -107,7 +99,7 @@ class Preview(models.Model):
 	def __str__(self):
 		"""Customize representation of this model's instance.
 		"""
-		return '{0}{1}'.format(self.file_name, self.preview_name)
+		return '{0}'.format(self.path.name[8:], )
 
 
 class SocialAuthUsersocialauth(models.Model):
@@ -134,10 +126,33 @@ class SocialAuthUsersocialauth(models.Model):
 
 @receiver(post_delete, sender=Preview)
 def file_cleanup(sender, **kwargs):
-	"""This method deletes associated photo files on disk every time 'delete()'
-	is called on a model instance (or on a queryset of Effect objects).
+	"""This method deletes associated 'Preview' files on disk every time 'delete()'
+	is called on a model instance (or on a queryset of 'Preview' objects).
+	"""
+
+	instance = kwargs.get('instance')
+	filename = instance.path.url[1:]
+	if os.path.exists(filename):
+		os.remove(filename)
+
+
+@receiver(post_delete, sender=Photo)
+def file_cleanup(sender, **kwargs):
+	"""This method deletes associated 'Photo' files on disk every time 'delete()'
+	is called on a model instance (or on a queryset of 'Photo' objects).
 	"""
 	instance = kwargs.get('instance')
 	filename = instance.path.url[1:]
 	if os.path.exists(filename):
-			os.remove(filename)
+		os.remove(filename)
+
+
+@receiver(post_delete, sender=PhotoEdit)
+def file_cleanup(sender, **kwargs):
+	"""This method deletes associated 'PhotoEdit' files on disk every time 'delete()'
+	is called on a model instance (or on a queryset of 'PhotoEdit' objects).
+	"""
+	instance = kwargs.get('instance')
+	filename = instance.upload.url[1:]
+	if os.path.exists(filename):
+		os.remove(filename)
