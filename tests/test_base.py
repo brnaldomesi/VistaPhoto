@@ -6,6 +6,8 @@ from django.core.urlresolvers import reverse
 from PIL import Image
 from faker import Factory
 
+from app.models import Photo
+
 
 class TestBaseClass(TestCase):
 	"""Base class for all the tests in this app."""
@@ -27,7 +29,12 @@ class TestBaseClass(TestCase):
 		"""Destroy resources after they have been used in the tests."""
 		del self.fake
 		self.user.delete()
+		# delete all Photo objects (In the process, deletes all edits, previews
+		# and all associated files on disk )
+		Photo.objects.all().delete()
+
 		del self.test_image
+		# delete image created during setUp
 		if os.path.exists('test.jpg'):
 			os.remove('test.jpg')
 		self.logout_user()
