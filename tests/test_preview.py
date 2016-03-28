@@ -9,14 +9,6 @@ from app.models import Preview, Photo
 class TestPhotoEffects(TestBaseClass):
 	"""Test the '/api/preview/' url."""
 
-	def tearDown(self):
-		"""Delete all Effects objects.
-
-		(To clean up associated effect files on disk).
-		"""
-		all_previews = Preview.objects.all()
-		all_previews.delete()
-
 	def test_successful_post(self):
 		"""Test successful POST on '/api/preview/' url."""
 		# build the url
@@ -114,5 +106,5 @@ class TestPhotoEffects(TestBaseClass):
 		self.assertEqual(response.status_text, 'No Content')
 		# confirm the file has been deleted from the system (when the delete
 		# request was sent)
-		# self.assertFalse(os.path.exists(filename))
+		self.assertFalse(os.path.exists(filename))
 

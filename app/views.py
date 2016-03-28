@@ -25,12 +25,12 @@ def is_logged_in(request):
 	if request.method == 'GET':
 		if request.user.is_authenticated():
 			try:
-				fbObject = SocialAuthUsersocialauth.objects.get(user=request.user)
+				fb_object = SocialAuthUsersocialauth.objects.get(user=request.user)
 				return Response(
 					{
 						'status': 'isLoggedIn',
 						'username': request.user.first_name + ' ' + request.user.last_name,
-						'uid': fbObject.uid
+						'uid': fb_object.uid
 					}, status=status.HTTP_200_OK
 				)
 			except SocialAuthUsersocialauth.DoesNotExist:

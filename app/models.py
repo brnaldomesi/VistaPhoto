@@ -125,7 +125,7 @@ class SocialAuthUsersocialauth(models.Model):
 
 
 @receiver(post_delete, sender=Preview)
-def file_cleanup(sender, **kwargs):
+def preview_file_cleanup(sender, **kwargs):
 	"""This method deletes associated 'Preview' files on disk every time 'delete()'
 	is called on a model instance (or on a queryset of 'Preview' objects).
 	"""
@@ -137,7 +137,7 @@ def file_cleanup(sender, **kwargs):
 
 
 @receiver(post_delete, sender=Photo)
-def file_cleanup(sender, **kwargs):
+def photo_file_cleanup(sender, **kwargs):
 	"""This method deletes associated 'Photo' files on disk every time 'delete()'
 	is called on a model instance (or on a queryset of 'Photo' objects).
 	"""
@@ -148,9 +148,10 @@ def file_cleanup(sender, **kwargs):
 
 
 @receiver(post_delete, sender=PhotoEdit)
-def file_cleanup(sender, **kwargs):
-	"""This method deletes associated 'PhotoEdit' files on disk every time 'delete()'
-	is called on a model instance (or on a queryset of 'PhotoEdit' objects).
+def photo_edit_file_cleanup(sender, **kwargs):
+	"""This method deletes associated 'PhotoEdit' files on disk every time
+	'delete()' is called on a model instance (or on a queryset of 'PhotoEdit'
+	objects).
 	"""
 	instance = kwargs.get('instance')
 	filename = instance.upload.url[1:]

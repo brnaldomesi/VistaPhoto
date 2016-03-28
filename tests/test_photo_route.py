@@ -1,8 +1,10 @@
 import json
+import os
 from random import random
 
 from django.core.urlresolvers import reverse
 from django.contrib.auth.models import User
+from django.conf import settings
 
 from .test_base import TestBaseClass
 from app.models import FILTERS, Photo
@@ -158,12 +160,18 @@ class TestPhotoAPIRoute(TestBaseClass):
 		self.assertTrue(response.status_code, 201)
 		response = self.client.get(url)
 		photo_id = response.data[0].get('photo_id')
+		file_url = response.data[0].get('file_url')
+		filename = settings.BASE_DIR + file_url
+		# Associated image file on disk exists before delete is called
+		self.assertTrue(os.path.exists(filename))
 		url += str(photo_id) + '/'
 		response = self.client.delete(url)
 		self.assertEqual(response.status_code, 204)
 		self.assertEqual(response.status_text, 'No Content')
 		all_photos = Photo.objects.all()
 		self.assertEqual(len(all_photos), 0)
+		# Associated image file has been deleted after DELETE request
+		self.assertFalse(os.path.exists(filename))
 
 	def test_delete_non_existent_photo_id(self):
 		"""Test successful DELETE to '/api/photo/:photo_id'."""

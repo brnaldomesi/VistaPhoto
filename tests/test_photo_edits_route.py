@@ -29,17 +29,3 @@ class TestPhotoEditsURL(TestBaseClass):
         self.assertEqual('Forbidden', response.status_text)
         self.assertTrue(
             'credentials were not provided.' in response.data.get('detail'))
-
-    # def test_authenticated_post(self):
-    #     """Test authenticateed POST request to '/api/edit/' route.
-    #     """
-    #     url = '/api/edit/'
-
-    #     # authenticate
-    #     self.login_user()
-    #     # create a photo
-    #     photo =
-
-    #     response = self.client.post(url)
-    #     self.assertEqual(403, response.status_code)
-    #     self.assertEqual('Forbidden', response.status_text)

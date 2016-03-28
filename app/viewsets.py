@@ -131,14 +131,7 @@ class PhotoViewSet(viewsets.ModelViewSet):
 			photo = Photo.objects.get(pk=pk)
 			filename = settings.BASE_DIR + photo.path.url
 			photo.delete()
-			if os.path.exists(filename):
-				os.remove(filename)
-				return Response({}, status=status.HTTP_204_NO_CONTENT)
-			return Response(
-				{
-					'detail': 'Photo file not found.'
-				}, status=status.HTTP_404_NOT_FOUND
-			)
+			return Response({}, status=status.HTTP_204_NO_CONTENT)
 		except Photo.DoesNotExist:
 			return Response(
 				{
