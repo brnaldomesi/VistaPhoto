@@ -1,23 +1,16 @@
 import json
 import os
-from random import random
 
 from django.core.urlresolvers import reverse
 from django.contrib.auth.models import User
 from django.conf import settings
 
 from .test_base import TestBaseClass
-from app.models import FILTERS, Photo
+from app.models import Photo
 
 
 class TestPhotoAPIRoute(TestBaseClass):
 	"""Test the '/api/photo/' url."""
-
-	def get_random_filter(self):
-		"""Return a random filter effect to use on photo."""
-		filters = list(FILTERS)
-		rand_index = int(random() * len(filters))
-		return filters[rand_index]
 
 	def test_access_permissions(self):
 		"""Test permissions to '/api/photo/:photo_id/'.

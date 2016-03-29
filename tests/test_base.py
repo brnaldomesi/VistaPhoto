@@ -1,4 +1,6 @@
 import os
+from random import random
+
 from django.test import TestCase, Client
 from django.contrib.auth.models import User
 from django.core.files.images import ImageFile
@@ -6,7 +8,7 @@ from django.core.urlresolvers import reverse
 from PIL import Image
 from faker import Factory
 
-from app.models import Photo
+from app.models import Photo, FILTERS
 
 
 class TestBaseClass(TestCase):
@@ -59,3 +61,9 @@ class TestBaseClass(TestCase):
 		f = open('test.jpg', 'rb')
 		imf = ImageFile(f)
 		return imf
+
+	def get_random_filter(self):
+		"""Return a random filter effect to use on photo."""
+		filters = list(FILTERS)
+		rand_index = int(random() * len(filters))
+		return filters[rand_index]
