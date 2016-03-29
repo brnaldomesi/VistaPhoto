@@ -194,13 +194,13 @@ div.upload_button_div {
 	font-family: 'Lobster', cursive;
 	font-size: 13em;
 	margin: auto;
-	color: #3498d8;
+	color: #eceff1;
 }
 
 #placeholder_instructions {
 	margin: auto;
-	font-family: 'Lobster', cursive;
-	color: #3498d8;
+	font-family: 'Arial', cursive;
+	color: #eceff1;
 	font-size: 3em;
 }
 
