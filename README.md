@@ -17,6 +17,7 @@
     *  Image Emboss
     *  Image Smoothening
   *  Allows users to share uploaded images on Facebook via a public url
+*  Click [here](http://vistagrid.herokuapp.com/) to access the app on Heroku
 
 ## Dependencies
 
