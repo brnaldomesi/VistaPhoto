@@ -12,7 +12,7 @@ from faker import Factory
 
 from .serializers import PhotoSerializer, PreviewSerializer, PhotoEditSerializer
 from .models import Photo, Preview, FILTERS, PhotoEdit
-from .permissions import IsOwner
+from .permissions import IsOwner, IsEditOwner
 
 
 class PreviewViewSet(viewsets.ModelViewSet):
@@ -145,4 +145,23 @@ class PhotoEditViewSet(viewsets.ModelViewSet):
 	"""
 	queryset = PhotoEdit.objects.all().order_by('-photo_edit_id')
 	serializer_class = PhotoEditSerializer
-	permission_classes = (permissions.IsAuthenticated, )
+	permission_classes = (permissions.IsAuthenticated, IsEditOwner)
+
+	def get_queryset(self):
+		"""Customize get_queryset method.
+
+		Override this method to provide both retrieve and list views to user.
+		"""
+		if self.kwargs.get('pk'):
+			return PhotoEdit.objects.filter(pk=self.kwargs.get('pk'))
+		return self.queryset
+
+	def get_object(self):
+		"""Override this method so that IsOwner permissions can be applied.
+
+		Override this method so as to call 'check_object_permissions' for IsOwner
+		permissions to be applied.
+		"""
+		obj = get_object_or_404(self.get_queryset())
+		self.check_object_permissions(self.request, obj)
+		return obj
