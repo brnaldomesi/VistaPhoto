@@ -154,10 +154,12 @@ class PhotoEditViewSet(viewsets.ModelViewSet):
 		"""
 		if self.kwargs.get('pk'):
 			return PhotoEdit.objects.filter(pk=self.kwargs.get('pk'))
-		return self.queryset
+		# current user owns photos of the following IDs
+		owner_photos = Photo.objects.filter(owner=self.request.user)
+		return self.queryset.filter(photo__in=owner_photos)
 
 	def get_object(self):
-		"""Override this method so that IsOwner permissions can be applied.
+		"""Override this method so that IsEditOwner permissions can be applied.
 
 		Override this method so as to call 'check_object_permissions' for IsOwner
 		permissions to be applied.

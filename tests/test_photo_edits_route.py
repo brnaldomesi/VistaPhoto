@@ -61,6 +61,10 @@ class TestPhotoEditsURL(TestBaseClass):
         url = reverse('edit-list')
         response = self.client.get(url)
         edit_id = response.data[0].get('photo_edit_id')
+        # confirm owner can access photo
+        url += str(edit_id) + '/'
+        response = self.client.get(url)
+        self.assertEqual(edit_id, response.data.get('photo_edit_id'))
         # logout user1
         self.logout_user()
         # create user2
@@ -76,7 +80,6 @@ class TestPhotoEditsURL(TestBaseClass):
         # login user2
         self.client.post(login_url, data=data)
         # attempt to access edit route as user2
-        url += str(edit_id) + '/'
         response = self.client.get(url)
         self.assertTrue(
             'You do not have permission' in response.data.get('detail'))
