@@ -1,7 +1,7 @@
 # Vistagrid
 
-[![Build Status](https://travis-ci.org/andela-lkabui/checkpoint4.svg?branch=develop)](https://travis-ci.org/andela-lkabui/checkpoint4)
-[![Coverage Status](https://coveralls.io/repos/github/andela-lkabui/checkpoint4/badge.svg?branch=develop)](https://coveralls.io/github/andela-lkabui/checkpoint4?branch=develop)
+[![Build Status](https://travis-ci.org/lewisemm/checkpoint4.svg?branch=develop)](https://travis-ci.org/lewisemm/checkpoint4)
+[![Coverage Status](https://coveralls.io/repos/github/lewisemm/checkpoint4/badge.svg?branch=develop)](https://coveralls.io/github/lewisemm/checkpoint4?branch=develop)
 [![Code Issues](https://www.quantifiedcode.com/api/v1/project/54a4decaa92b4d2483d7a1c3c42f79c0/badge.svg)](https://www.quantifiedcode.com/app/project/54a4decaa92b4d2483d7a1c3c42f79c0)
 
 ## Introduction
@@ -47,11 +47,11 @@
 *  Clone this repository on that directory.
   *  Using SSH;
 
-    >`git clone git@github.com:andela-lkabui/checkpoint4.git`
+    >`git clone git@github.com:lewisemm/checkpoint4.git`
 
   *  Using HTTP;
 
-    >`https://github.com/andela-lkabui/checkpoint4.git`
+    >`https://github.com/lewisemm/checkpoint4.git`
 
 *  Navigate to the repo's folder on your computer
   *  `cd checkpoint4/`
