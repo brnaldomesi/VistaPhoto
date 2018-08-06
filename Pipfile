@@ -1,0 +1,43 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+appnope = "==0.1.0"
+autoenv = "==1.0.0"
+coverage = "==4.0.3"
+decorator = "==4.0.9"
+dj-database-url = "==0.4.0"
+dj-static = "==0.0.6"
+djangorestframework = "==3.3.2"
+fake-factory = "==0.5.5"
+gnureadline = "==6.3.3"
+gunicorn = "==19.9.0"
+ipaddress = "==1.0.16"
+ipdb = "==0.9.0"
+ipython = "==4.1.1"
+oauthlib = "==1.0.3"
+"path.py" = "==8.1.2"
+pexpect = "==4.0.1"
+pickleshare = "==0.6"
+"psycopg2" = "==2.6.1"
+ptyprocess = "==0.5.1"
+python-dateutil = "==2.5.0"
+python-openid = "==2.2.5"
+python-social-auth = "==0.2.14"
+requests = "==2.9.1"
+requests-oauthlib = "==0.6.1"
+simplegeneric = "==0.8.1"
+six = "==1.10.0"
+"static3" = "==0.6.1"
+traitlets = "==4.1.0"
+Django = "==1.9.2"
+ipython_genutils = "==0.1.0"
+Pillow = "==3.1.1"
+PyJWT = "==1.4.0"
+
+[dev-packages]
+
+[requires]
+python_version = "3.5"

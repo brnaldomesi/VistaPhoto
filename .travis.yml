@@ -4,10 +4,13 @@ python:
   # https://github.com/necaris/python-openid/commit/53ec8b0eeb28ed19220df2577b429168698d96e4
   - "3.4"
   - "3.5"
+services:
+  - postgresql
 before_install:
-  - pip install -r requirements.txt
+  - pip install pipenv
+  - pipenv install
 install:
-  - pip install coveralls
+  - pipenv install coveralls
 script:
   - coverage run manage.py test
 after_success:
