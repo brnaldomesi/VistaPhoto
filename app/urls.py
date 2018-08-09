@@ -11,6 +11,6 @@ router.register(r'preview', viewsets.PreviewViewSet, 'preview')
 router.register(r'edit', viewsets.PhotoEditViewSet, 'edit')
 
 urlpatterns = [
-	url(r'^', include(router.urls)),
+    url(r'^', include(router.urls)),
     url(r'^login/status/', views.is_logged_in, name='loginstatus')
 ]
