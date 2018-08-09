@@ -8,3 +8,4 @@ uploads/
 .coverage
 staticfiles
 app/migrations/*
+.envrc
